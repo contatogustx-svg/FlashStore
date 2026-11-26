@@ -4,74 +4,115 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GustX – Recargas &amp; Streamings</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,600;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600;1,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header><div class="nav">
-<a class="logo" href="#inicio"><span class="crown">👑</span><span>Gust<b>X</b><small>Recargas &amp; Streamings</small></span></a>
-<nav><a class="on" href="#inicio">Início</a><a href="#recargas">Recargas</a><a href="#streamings">Streamings</a><a href="#conta">Minha Conta</a><a href="#suporte">Suporte</a></nav>
-<button class="cart" id="cartBtn" aria-label="Abrir carrinho"><i id="count">0</i>🛒 Meu Carrinho</button>
-</div></header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+<symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.5 11h10L20 7H6"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></symbol>
+<symbol id="i-game" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10v5M4.5 12.5h5"/><circle cx="16" cy="11.5" r=".8"/><circle cx="18.5" cy="14" r=".8"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8C10 3.5 6 4.5 7 8M12 8c2-4.500 6-3.500 5 0"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.700 5.600 6.100.9-4.400 4.300 1 6.100L12 17l-5.400 2.900 1-6.100L3.200 9.500l6.100-.9z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 12a8 8 0 01-11.800 7L4 20l1.200-4A8 8 0 1120 12z"/><path d="M9 9.500c0 3 2.500 5.500 5.500 5.500l1-1.500-2-1-.8.800c-.8-.4-1.600-1.200-2-2l.8-.8-1-2z"/></symbol>
+<symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8l4.500 4L12 4.500 16.500 12 21 8l-2 11H5z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</defs></svg>
 
-<main class="wrap" id="inicio">
-<section class="hero">
-<div>
-<h1>Netflix <span>4K</span></h1>
-<h2>por um preço imperdível!</h2>
-<ul class="checks"><li>Filmes e séries de lançamentos</li><li>Qualidade 4K Ultra HD</li><li>Acesso em todos os dispositivos</li></ul>
-<a class="cta" href="#streamings"><span>Assine agora e aproveite o melhor do entretenimento! ▸</span></a>
+<header>
+<div class="nav">
+<a class="logo" href="#inicio"><svg class="ic crown"><use href="#i-crown"/></svg><span>Gust<b>X</b><small>Recargas &amp; Streamings</small></span></a>
+<nav aria-label="Principal">
+<a class="on" href="#inicio"><svg class="ic"><use href="#i-home"/></svg>Início</a>
+<a href="#recargas"><svg class="ic"><use href="#i-phone"/></svg>Recargas</a>
+<a href="#streamings"><svg class="ic"><use href="#i-tv"/></svg>Streamings</a>
+<a href="#conta"><svg class="ic"><use href="#i-user"/></svg>Minha Conta</a>
+<a href="#suporte"><svg class="ic"><use href="#i-headset"/></svg>Suporte</a>
+</nav>
+<button class="cart" id="cartBtn" aria-label="Abrir carrinho"><svg class="ic"><use href="#i-cart"/></svg><span class="lbl">Meu Carrinho</span><i id="count">0</i></button>
 </div>
-<div class="stage"><div class="screen"><b>N</b></div><div class="pop" aria-hidden="true">🍿</div></div>
-<aside class="tagline"><h3>Tudo em um só lugar!</h3><p>✓ Recargas de dados</p><p>✓ Streamings</p><p>✓ E muito mais!</p></aside>
-</section>
+</header>
 
+<main id="inicio">
+<section class="hero"><div class="orb o1"></div><div class="orb o2"></div>
+<div class="wrap hero-grid">
+<div class="hero-text">
+<span class="pill"><svg class="ic"><use href="#i-bolt"/></svg>Oferta de lançamento</span>
+<h1>Netflix <span class="grad">4K</span></h1>
+<h2>por um preço imperdível!</h2>
+<ul class="checks">
+<li><svg class="ic"><use href="#i-check"/></svg>Filmes e séries de lançamentos</li>
+<li><svg class="ic"><use href="#i-check"/></svg>Qualidade 4K Ultra HD</li>
+<li><svg class="ic"><use href="#i-check"/></svg>Acesso em todos os dispositivos</li>
+</ul>
+<a class="cta" href="#streamings">Assine agora e aproveite o melhor do entretenimento<svg class="ic"><use href="#i-arrow"/></svg></a>
+</div>
+<div class="stage" aria-hidden="true">
+<div class="poster p1"></div><div class="poster p2"></div><div class="poster p3"></div>
+<div class="screen"><b>N</b><span>4K ULTRA HD</span></div>
+<div class="chip c1"><svg class="ic"><use href="#i-star"/></svg>4,9 de avaliação</div>
+<div class="chip c2"><svg class="ic"><use href="#i-bolt"/></svg>Entrega imediata</div>
+</div>
+<aside class="tagline"><h3>Tudo em um <span class="grad">só lugar!</span></h3>
+<p><svg class="ic"><use href="#i-check"/></svg>Recargas de dados</p>
+<p><svg class="ic"><use href="#i-check"/></svg>Streamings</p>
+<p><svg class="ic"><use href="#i-check"/></svg>E muito mais!</p></aside>
+</div></section>
+
+<div class="wrap">
 <section class="cats">
-<a href="#recargas"><em>📱</em>Recargas de Celular</a>
-<a href="#streamings"><em>📺</em>Streamings</a>
-<a href="#games"><em>🎮</em>Games</a>
-<a href="#gifts"><em>🎁</em>Presentes e Gift Cards</a>
-<a href="#seguranca"><em>🛡️</em>Segurança e Confiança</a>
-<a href="#entrega"><em>⚡</em>Entrega Imediata</a>
+<a href="#recargas"><span class="bub"><svg class="ic"><use href="#i-phone"/></svg></span>Recargas de Celular</a>
+<a href="#streamings"><span class="bub"><svg class="ic"><use href="#i-tv"/></svg></span>Streamings</a>
+<a href="#games"><span class="bub"><svg class="ic"><use href="#i-game"/></svg></span>Games</a>
+<a href="#gifts"><span class="bub"><svg class="ic"><use href="#i-gift"/></svg></span>Presentes e Gift Cards</a>
+<a href="#seguranca"><span class="bub"><svg class="ic"><use href="#i-shield"/></svg></span>Segurança e Confiança</a>
+<a href="#entrega"><span class="bub"><svg class="ic"><use href="#i-bolt"/></svg></span>Entrega Imediata</a>
 </section>
 
 <section id="recargas">
-<div class="sec"><div><h2>📱 Recargas de Celular</h2><p>Fale mais, navegue mais, sem preocupações!</p></div><a class="all" href="#recargas">Ver todos →</a></div>
+<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-phone"/></svg></span><div><h2>Recargas de Celular</h2><p>Fale mais, navegue mais, sem preocupações!</p></div></div><a class="all" href="#recargas">Ver todos<svg class="ic"><use href="#i-arrow"/></svg></a></div>
 <div class="grid g4">
-<div class="card vivo"><div class="top">vivo</div><div class="body"><h4>Recarga Vivo</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Vivo">🛒 Comprar Agora</button></div></div>
-<div class="card claro"><div class="top">Claro</div><div class="body"><h4>Recarga Claro</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Claro">🛒 Comprar Agora</button></div></div>
-<div class="card tim"><div class="top"><i>≡</i>TIM</div><div class="body"><h4>Recarga TIM</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga TIM">🛒 Comprar Agora</button></div></div>
-<div class="card oi"><div class="top">oi</div><div class="body"><h4>Recarga Oi</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Oi">🛒 Comprar Agora</button></div></div>
+<article class="card vivo"><div class="top"><span>vivo</span></div><div class="body"><h4>Recarga Vivo</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Vivo"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card claro"><div class="top"><span>Claro</span></div><div class="body"><h4>Recarga Claro</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Claro"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card tim"><div class="top"><span><u>≡</u>TIM</span></div><div class="body"><h4>Recarga TIM</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga TIM"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card oi"><div class="top"><span class="oi-b">oi</span></div><div class="body"><h4>Recarga Oi</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Oi"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
 </div>
 </section>
 
 <section id="streamings">
-<div class="sec"><div><h2>📺 Streamings</h2><p>Seus favoritos, sempre com você!</p></div><a class="all" href="#streamings">Ver todos →</a></div>
+<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-tv"/></svg></span><div><h2>Streamings</h2><p>Seus favoritos, sempre com você!</p></div></div><a class="all" href="#streamings">Ver todos<svg class="ic"><use href="#i-arrow"/></svg></a></div>
 <div class="grid g6">
-<div class="card s"><div class="top" style="color:#e50914">NETFLIX</div><div class="body"><h4>Netflix 4K</h4><small>Planos a partir de:</small><strong>R$ 24,90 / mês</strong><button class="buy" data-item="Netflix 4K">🛒 Comprar Agora</button></div></div>
-<div class="card s"><div class="top" style="color:#9cc7ff">Disney+</div><div class="body"><h4>Disney Plus</h4><small>Planos a partir de:</small><strong>R$ 24,90 / mês</strong><button class="buy" data-item="Disney Plus">🛒 Comprar Agora</button></div></div>
-<div class="card s"><div class="top" style="background:#2a0f66">HBO max</div><div class="body"><h4>HBOMAX</h4><small>Planos a partir de:</small><strong>R$ 24,90 / mês</strong><button class="buy" data-item="HBOMAX">🛒 Comprar Agora</button></div></div>
-<div class="card s"><div class="top" style="color:#1ed760">Spotify</div><div class="body"><h4>Spotify Premium</h4><small>Planos a partir de:</small><strong>R$ 16,90 / mês</strong><button class="buy" data-item="Spotify Premium">🛒 Comprar Agora</button></div></div>
-<div class="card s"><div class="top" style="color:#ff6a1a">DAZN</div><div class="body"><h4>Dazze</h4><small>Planos a partir de:</small><strong>R$ 19,90 / mês</strong><button class="buy" data-item="Dazze">🛒 Comprar Agora</button></div></div>
-<div class="card s"><div class="top" style="color:#7fb8ff;font-style:italic">Paramount+</div><div class="body"><h4>Paramount Plus</h4><small>Planos a partir de:</small><strong>R$ 27,90 / mês</strong><button class="buy" data-item="Paramount Plus">🛒 Comprar Agora</button></div></div>
+<article class="card s"><div class="top" style="--c:#e50914"><span style="color:#e50914">NETFLIX</span></div><div class="body"><h4>Netflix 4K</h4><small>Planos a partir de:</small><strong>R$ 24,90 <em>/ mês</em></strong><button class="buy" data-item="Netflix 4K"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card s"><div class="top" style="--c:#2f6bff"><span style="color:#a9c8ff">Disney+</span></div><div class="body"><h4>Disney Plus</h4><small>Planos a partir de:</small><strong>R$ 24,90 <em>/ mês</em></strong><button class="buy" data-item="Disney Plus"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card s"><div class="top" style="--c:#7b2cff"><span style="color:#d8c2ff">HBO max</span></div><div class="body"><h4>HBOMAX</h4><small>Planos a partir de:</small><strong>R$ 24,90 <em>/ mês</em></strong><button class="buy" data-item="HBOMAX"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card s"><div class="top" style="--c:#1ed760"><span style="color:#1ed760">Spotify</span></div><div class="body"><h4>Spotify Premium</h4><small>Planos a partir de:</small><strong>R$ 16,90 <em>/ mês</em></strong><button class="buy" data-item="Spotify Premium"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card s"><div class="top" style="--c:#ff6a1a"><span style="color:#ff8a45">DAZN</span></div><div class="body"><h4>Dazze</h4><small>Planos a partir de:</small><strong>R$ 19,90 <em>/ mês</em></strong><button class="buy" data-item="Dazze"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
+<article class="card s"><div class="top" style="--c:#2a8bff"><span style="color:#8ec5ff;font-style:italic">Paramount+</span></div><div class="body"><h4>Paramount Plus</h4><small>Planos a partir de:</small><strong>R$ 27,90 <em>/ mês</em></strong><button class="buy" data-item="Paramount Plus"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
 </div>
 </section>
 
 <section class="trust" id="seguranca">
-<div id="entrega"><em>⚡</em>Entrega<br>Imediata</div>
-<div><em>🛡️</em>Compra<br>Segura</div>
-<div id="suporte"><em>🎧</em>Suporte<br>Especializado</div>
-<div><em>⭐</em>Clientes<br>Satisfeitos</div>
+<div id="entrega"><span class="bub"><svg class="ic"><use href="#i-bolt"/></svg></span><p>Entrega<br>Imediata</p></div>
+<div><span class="bub"><svg class="ic"><use href="#i-shield"/></svg></span><p>Compra<br>Segura</p></div>
+<div id="suporte"><span class="bub"><svg class="ic"><use href="#i-headset"/></svg></span><p>Suporte<br>Especializado</p></div>
+<div><span class="bub"><svg class="ic"><use href="#i-star"/></svg></span><p>Clientes<br>Satisfeitos</p></div>
 </section>
+</div>
 </main>
 
 <footer><div class="foot">
-<a class="logo" href="#inicio"><span class="crown">👑</span><span>Gust<b>X</b><small>Recargas &amp; Streamings</small></span></a>
+<a class="logo" href="#inicio"><svg class="ic crown"><use href="#i-crown"/></svg><span>Gust<b>X</b><small>Recargas &amp; Streamings</small></span></a>
 <p>Conectando você ao que ama!</p>
-<a class="wa" href="https://wa.me/5500000000000" target="_blank" rel="noopener">💬 <span><b>Fale Conosco</b>pelo WhatsApp</span> ›</a>
+<a class="wa" href="https://wa.me/5500000000000" target="_blank" rel="noopener"><svg class="ic big"><use href="#i-chat"/></svg><span><b>Fale Conosco</b>pelo WhatsApp</span><svg class="ic"><use href="#i-arrow"/></svg></a>
 </div></footer>
 <div class="toast" id="toast" role="status"></div>
-
 <script src="js/script.js" defer></script>
 </body>
 </html>
