@@ -308,3 +308,76 @@
 
   go(0); play();
 })();
+
+/* destaque do início: troca de streaming sozinho */
+(function () {
+  var hero = document.querySelector('.hero');
+  var grid = hero && hero.querySelector('.hero-grid');
+  if (!grid) return;
+  var DATA = [
+    { id: 'netflix',   a: 'Netflix',   b: '4K',      sub: 'por um preço imperdível!',        logo: 'N',   tag: '4K ULTRA HD',   price: 'R$ 24,90', c: '#c8101c', p: ['#a8303a', '#5a2cb0', '#2a58c8'], li: ['Filmes e séries de lançamentos', 'Qualidade 4K Ultra HD', 'Acesso em todos os dispositivos'] },
+    { id: 'disney',    a: 'Disney',    b: 'Plus',    sub: 'diversão para toda a família!',    logo: 'D+',  tag: 'DISNEY PLUS',   price: 'R$ 24,90', c: '#3b7bff', p: ['#2f6bff', '#6a2cb8', '#1a3a9a'], li: ['Disney, Pixar, Marvel e Star Wars', 'Filmes e séries para todas as idades', 'Acesso em todos os dispositivos'] },
+    { id: 'hbomax',    a: 'HBO',       b: 'Max',     sub: 'séries e filmes de tirar o fôlego!', logo: 'max', tag: 'HBO MAX',       price: 'R$ 24,90', c: '#8a4dff', p: ['#7b2cff', '#2a58c8', '#4a1a9a'], li: ['Séries originais e lançamentos', 'Filmes e documentários', 'Acesso em todos os dispositivos'] },
+    { id: 'spotify',   a: 'Spotify',   b: 'Premium', sub: 'sua música, sem interrupções!',    logo: 'S',   tag: 'PREMIUM',       price: 'R$ 16,90', c: '#1ed760', p: ['#1ed760', '#2a58c8', '#0f8a3c'], li: ['Músicas sem anúncios', 'Ouça offline, onde quiser', 'Acesso em todos os dispositivos'] },
+    { id: 'dazn',      a: 'Dazze',     b: 'Esporte', sub: 'o esporte que você ama!',          logo: 'D',   tag: 'AO VIVO',       price: 'R$ 19,90', c: '#ff7a2e', p: ['#ff6a1a', '#2a58c8', '#a8303a'], li: ['Esportes ao vivo e sob demanda', 'Lutas, futebol e muito mais', 'Acesso em todos os dispositivos'] },
+    { id: 'paramount', a: 'Paramount', b: 'Plus',    sub: 'filmes e séries para maratonar!',  logo: 'P+',  tag: 'PARAMOUNT+',    price: 'R$ 27,90', c: '#4a9bff', p: ['#2a8bff', '#5a2cb0', '#1a3a9a'], li: ['Filmes, séries e lançamentos', 'Conteúdo para toda a família', 'Acesso em todos os dispositivos'] }
+  ];
+  var title = document.getElementById('heroTitle'), sub = document.getElementById('heroSub'), list = document.getElementById('heroChecks');
+  var price = document.getElementById('heroPrice'), logo = document.getElementById('heroLogo'), tag = document.getElementById('heroTag');
+  var cta = document.getElementById('heroCta'), dotsBox = document.getElementById('heroDots');
+  var i = 0, timer = null, busy = false, x0 = null, y0 = null;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CHECK = '<svg class="ic"><use href="#i-check"/></svg>';
+
+  DATA.forEach(function (d, n) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', 'Ver ' + d.a + ' ' + d.b);
+    b.onclick = function () { go(n); play(); };
+    dotsBox.appendChild(b);
+  });
+  var dots = [].slice.call(dotsBox.children);
+
+  function apply(n) {
+    var d = DATA[n]; i = n;
+    hero.style.setProperty('--brand', d.c);
+    hero.style.setProperty('--p1', d.p[0]); hero.style.setProperty('--p2', d.p[1]); hero.style.setProperty('--p3', d.p[2]);
+    title.textContent = d.a + ' ';
+    var g = document.createElement('span'); g.className = 'grad'; g.textContent = d.b; title.appendChild(g);
+    sub.textContent = d.sub;
+    list.innerHTML = '';
+    d.li.forEach(function (t) { var li = document.createElement('li'); li.innerHTML = CHECK; li.appendChild(document.createTextNode(t)); list.appendChild(li); });
+    price.textContent = d.price; logo.textContent = d.logo; tag.textContent = d.tag;
+    cta.setAttribute('data-id', d.id);
+    dots.forEach(function (x, k) { x.classList.toggle('on', k === n); });
+  }
+  function go(n) {
+    n = (n + DATA.length) % DATA.length;
+    if (n === i || busy) return;
+    if (still) { apply(n); return; }
+    busy = true; grid.classList.add('swap');
+    setTimeout(function () { apply(n); grid.classList.remove('swap'); busy = false; }, 280);
+  }
+  function stop() { clearInterval(timer); timer = null; }
+  function play() { stop(); if (still) return; timer = setInterval(function () { go(i + 1); }, 6000); }
+
+  /* "Assinar agora" coloca o streaming que está na tela no carrinho */
+  cta.addEventListener('click', function (e) {
+    var btn = document.querySelector('.buy[data-id="' + cta.getAttribute('data-id') + '"]');
+    if (btn) { e.preventDefault(); e.stopPropagation(); btn.click(); }
+  });
+  hero.addEventListener('mouseenter', stop);
+  hero.addEventListener('mouseleave', play);
+  hero.addEventListener('focusin', stop);
+  hero.addEventListener('focusout', play);
+  hero.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; stop(); }, { passive: true });
+  hero.addEventListener('touchend', function (e) {
+    if (x0 !== null) {
+      var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(i + (dx < 0 ? 1 : -1));
+    }
+    x0 = null; play();
+  });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else play(); });
+
+  apply(0); play();
+})();
