@@ -25,6 +25,7 @@
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.500"/><path d="M3.500 7l8.500 6 8.500-6"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
 <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8l4.500 4L12 4.500 16.500 12 21 8l-2 11H5z"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </defs></svg>
@@ -189,26 +190,35 @@
 <a class="wfloat" href="https://wa.me/5568992423531" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg class="ic fill"><use href="#i-wa"/></svg></a>
 <div class="overlay" id="overlay" hidden></div>
 <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawerTitle">
-<div class="d-head"><h2 id="drawerTitle">Meu carrinho</h2><button type="button" class="d-x" id="drawerClose" aria-label="Fechar">&times;</button></div>
+<div class="d-head">
+<div class="d-ttl"><span class="bub sm"><svg class="ic"><use href="#i-cart"/></svg></span><div><h2 id="drawerTitle">Meu carrinho</h2><p id="drawerSub">Nenhum item</p></div></div>
+<button type="button" class="d-x" id="drawerClose" aria-label="Fechar">&times;</button>
+</div>
+<ol class="stp" aria-label="Etapas da compra"><li data-s="cart">Carrinho</li><li data-s="form">Seus dados</li><li data-s="pix">Pix</li></ol>
 <div class="d-body">
 <div id="viewCart">
-<p class="empty" id="emptyMsg">Seu carrinho está vazio. Escolha uma recarga ou um streaming.</p>
+<div class="empty" id="emptyMsg">
+<span class="empty-ic"><svg class="ic"><use href="#i-cart"/></svg></span>
+<h3>Seu carrinho está vazio</h3>
+<p>Escolha uma recarga ou uma assinatura para começar.</p>
+<div class="empty-act"><a class="cta" href="#recargas" data-close>Ver recargas</a><a class="ghost" href="#streamings" data-close>Ver streamings</a></div>
+</div>
 <ul class="items" id="itemsList"></ul>
 </div>
 <form id="viewForm" hidden novalidate>
-<label for="fName">Seu nome<input id="fName" type="text" autocomplete="name" maxlength="80" required></label>
-<label for="fPhone">WhatsApp com DDD<input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(68) 99999-9999" maxlength="20" required></label>
+<div class="sum"><span>Total do pedido</span><b id="totalForm">R$ 0,00</b></div>
+<label for="fName">Seu nome<input id="fName" type="text" autocomplete="name" maxlength="80" placeholder="Como podemos te chamar?" required></label>
+<label for="fPhone">WhatsApp com DDD<input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(68) 99999-9999" maxlength="20" required><em>É por ele que enviamos o seu pedido.</em></label>
 <label for="fNote">Observação (opcional)<input id="fNote" type="text" maxlength="120" placeholder="Ex.: número que vai receber a recarga"></label>
-<p class="d-total"><span>Total</span><b id="totalForm">R$ 0,00</b></p>
 <p class="form-err" id="formErr" role="alert" hidden></p>
-<button class="buy" id="genBtn" type="submit">Gerar Pix</button>
+<button class="buy big" id="genBtn" type="submit">Gerar Pix</button>
 <button class="back" type="button" data-back="cart">Voltar ao carrinho</button>
 </form>
 <div id="viewPix" hidden>
-<p class="d-total"><span>Valor do Pix</span><b id="totalPix">R$ 0,00</b></p>
-<div class="qr" id="qrBox"></div>
-<label for="pixCode">Pix copia e cola<textarea id="pixCode" rows="4" readonly></textarea></label>
-<button class="buy" id="copyPix" type="button">Copiar código Pix</button>
+<div class="sum"><span>Valor do Pix</span><b id="totalPix">R$ 0,00</b></div>
+<div class="qr-wrap"><div class="qr" id="qrBox"></div><p>Abra o app do seu banco e escaneie o QR Code</p></div>
+<label for="pixCode">Ou use o Pix copia e cola<textarea id="pixCode" rows="3" readonly></textarea></label>
+<button class="buy big" id="copyPix" type="button">Copiar código Pix</button>
 <p class="status wait" id="payStatus"><span class="dot"></span><span id="payStatusTxt">Aguardando pagamento…</span></p>
 <button class="back" type="button" data-back="form">Voltar</button>
 </div>
@@ -216,12 +226,13 @@
 <span class="ok"><svg class="ic"><use href="#i-check"/></svg></span>
 <h3>Pagamento confirmado!</h3>
 <p>Recebemos o seu Pix. Em instantes entramos em contato pelo WhatsApp para fazer a entrega.</p>
-<button class="buy" id="doneBtn" type="button">Fechar</button>
+<button class="buy big" id="doneBtn" type="button">Fechar</button>
 </div>
 </div>
 <div class="d-foot" id="footCart">
-<p class="d-total"><span>Total</span><b id="totalCart">R$ 0,00</b></p>
-<button class="buy" id="toCheckout" type="button" disabled>Ir para o pagamento</button>
+<div class="sum"><span>Total</span><b id="totalCart">R$ 0,00</b></div>
+<button class="buy big" id="toCheckout" type="button" disabled>Ir para o pagamento<svg class="ic"><use href="#i-arrow"/></svg></button>
+<p class="safe"><svg class="ic"><use href="#i-shield"/></svg>Pagamento seguro via Pix</p>
 </div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
