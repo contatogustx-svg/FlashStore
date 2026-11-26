@@ -414,3 +414,63 @@
 
   apply(0); play();
 })();
+
+/* carrossel automático dos streamings */
+(function () {
+  var rail = document.getElementById('streamRail');
+  if (!rail) return;
+  var wrap = rail.parentNode, dotsBox = document.getElementById('railDots');
+  var cards = [].slice.call(rail.children);
+  var prev = wrap.querySelector('.prev'), next = wrap.querySelector('.next');
+  var timer = null, paused = false, visible = false, DELAY = 3500;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : rail.clientWidth; }
+  function perView() { return Math.max(1, Math.round(rail.clientWidth / step())); }
+  function pages() { return Math.max(1, cards.length - perView() + 1); }
+  function index() { return Math.round(rail.scrollLeft / step()); }
+  function go(i) { rail.scrollTo({ left: i * step(), behavior: reduce ? 'auto' : 'smooth' }); }
+  function advance(dir) {
+    var max = pages() - 1, i = index() + dir;
+    if (i > max) i = 0; else if (i < 0) i = max;
+    go(i);
+  }
+
+  function buildDots() {
+    dotsBox.innerHTML = '';
+    for (var n = 0; n < pages(); n++) {
+      (function (n) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('aria-label', 'Ir para o item ' + (n + 1));
+        b.addEventListener('click', function () { go(n); restart(); });
+        dotsBox.appendChild(b);
+      })(n);
+    }
+    mark();
+  }
+  function mark() {
+    var cur = Math.min(index(), pages() - 1);
+    [].forEach.call(dotsBox.children, function (b, n) { b.classList.toggle('on', n === cur); });
+  }
+
+  function stop() { clearInterval(timer); timer = null; }
+  function play() { stop(); if (reduce || paused || !visible || document.hidden) return; timer = setInterval(function () { advance(1); }, DELAY); }
+  function restart() { play(); }
+
+  prev.addEventListener('click', function () { advance(-1); restart(); });
+  next.addEventListener('click', function () { advance(1); restart(); });
+  rail.addEventListener('scroll', mark, { passive: true });
+  wrap.addEventListener('mouseenter', function () { paused = true; stop(); });
+  wrap.addEventListener('mouseleave', function () { paused = false; play(); });
+  wrap.addEventListener('focusin', function () { paused = true; stop(); });
+  wrap.addEventListener('focusout', function () { paused = false; play(); });
+  rail.addEventListener('touchstart', function () { paused = true; stop(); }, { passive: true });
+  rail.addEventListener('touchend', function () { setTimeout(function () { paused = false; play(); }, 4000); }, { passive: true });
+  document.addEventListener('visibilitychange', play);
+  window.addEventListener('resize', function () { buildDots(); });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; play(); }, { threshold: 0.25 }).observe(wrap);
+  } else { visible = true; }
+  buildDots(); play();
+})();
