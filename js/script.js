@@ -12,7 +12,8 @@
     timer = setTimeout(function () { toast.classList.remove('show'); }, 2000);
   }
 
-  document.querySelectorAll('.buy').forEach(function (btn) {
+  /* carrinho */
+  document.querySelectorAll('.buy[data-item]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       items.push(btn.dataset.item);
       count.textContent = items.length;
@@ -22,31 +23,46 @@
       say(btn.dataset.item + ' adicionado ao carrinho');
     });
   });
-
   cartBtn.addEventListener('click', function () {
     say(items.length ? items.length + ' item(ns): ' + items.join(', ') : 'Seu carrinho está vazio');
   });
-})();
 
-// destaca o item do menu da seção visível
-(function () {
-  var links = document.querySelectorAll('nav a');
-  var map = {};
-  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  function mark(id) {
-    if (!map[id]) return;
-    links.forEach(function (a) { a.classList.remove('on'); });
-    map[id].classList.add('on');
+  /* abas */
+  var TABS = ['inicio', 'recargas', 'streamings', 'conta', 'suporte'];
+  var panels = document.querySelectorAll('[data-tabs]');
+  var navLinks = document.querySelectorAll('nav a');
+
+  function showTab(name, push) {
+    if (TABS.indexOf(name) < 0) name = 'inicio';
+    document.body.dataset.tab = name;
+    panels.forEach(function (el) {
+      el.hidden = el.dataset.tabs.split(' ').indexOf(name) < 0;
+    });
+    navLinks.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + name;
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    if (push) history.replaceState(null, '', '#' + name);
+    window.scrollTo(0, 0);
   }
-  links.forEach(function (a) {
-    a.addEventListener('click', function () { mark(a.getAttribute('href').slice(1)); });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    if (a.hasAttribute('data-soon')) { e.preventDefault(); say('Em breve!'); return; }
+    var name = a.getAttribute('href').slice(1);
+    if (TABS.indexOf(name) >= 0) { e.preventDefault(); showTab(name, true); }
   });
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
-  }, { rootMargin: '-40% 0px -50% 0px' });
-  ['inicio', 'recargas', 'streamings', 'suporte'].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) io.observe(el);
+
+  window.addEventListener('hashchange', function () {
+    showTab(location.hash.slice(1), false);
   });
+
+  document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    say('O login ainda não está ativo.');
+  });
+
+  showTab(location.hash.slice(1), false);
 })();
