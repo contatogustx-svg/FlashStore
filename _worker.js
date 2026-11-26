@@ -1,15 +1,21 @@
-// GustX – backend único para o Cloudflare Pages (upload pelo painel).
+// Flash Store – backend único para o Cloudflare Pages (upload pelo painel).
 // Procure por "TODO" para ver o que falta preencher (parte do gateway).
 
 /* ================= CATÁLOGO (preços no servidor) ================= */
 // Catálogo e preços ficam NO SERVIDOR. O valor do site nunca é confiável.
+// Os ids precisam ser iguais aos data-id dos botões "Comprar" do index.html.
 const STREAMINGS = {
-  netflix:   { name: 'Netflix 4K',      cents: 2490 },
-  disney:    { name: 'Disney Plus',     cents: 2490 },
-  hbomax:    { name: 'HBOMAX',          cents: 2490 },
-  spotify:   { name: 'Spotify Premium', cents: 1690 },
-  dazn:      { name: 'Dazze',           cents: 1990 },
-  paramount: { name: 'Paramount Plus',  cents: 2790 },
+  netflix_tela:  { name: 'Netflix Premium 4K – Tela privada mensal', cents: 988 },
+  netflix_conta: { name: 'Netflix Premium 4K Full – Conta completa', cents: 3500 },
+  disney_tela:   { name: 'Disney Premium – Tela privada mensal',     cents: 879 },
+  disney_conta:  { name: 'Disney+ Premium – Conta completa',         cents: 3100 },
+  prime_sem:     { name: 'Prime Vídeo sem anúncios – Tela privada',  cents: 800 },
+  prime_com:     { name: 'Prime Vídeo com anúncios – Tela privada mensal', cents: 468 },
+  hbo_tela:      { name: 'HBO Max Platinum – Tela privada mensal',   cents: 668 },
+  hbo_conta:     { name: 'HBO Max Platinum 4K – Conta completa',     cents: 1690 },
+  spotify:       { name: 'Spotify Premium',                          cents: 1690 },
+  dazn:          { name: 'Dazze',                                    cents: 1990 },
+  paramount:     { name: 'Paramount Plus',                           cents: 2790 },
 };
 const RECHARGES = { vivo: 'Recarga Vivo', claro: 'Recarga Claro', tim: 'Recarga TIM', oi: 'Recarga Oi' };
 const RECHARGE_VALUES = [15, 20, 30, 50]; // valores aceitos (R$)
@@ -22,9 +28,9 @@ function buildOrder(items) {
     const qty = Number(it.qty);
     if (!Number.isInteger(qty) || qty < 1 || qty > 10) throw new Error('Quantidade inválida.');
     let name, cents;
-    if (STREAMINGS[it.id]) {
+    if (Object.hasOwn(STREAMINGS, it.id)) {
       ({ name, cents } = STREAMINGS[it.id]);
-    } else if (RECHARGES[it.id]) {
+    } else if (Object.hasOwn(RECHARGES, it.id)) {
       const v = Number(it.value);
       if (!RECHARGE_VALUES.includes(v)) throw new Error('Valor de recarga inválido.');
       name = `${RECHARGES[it.id]} – R$ ${v}`; cents = v * 100;
@@ -89,7 +95,7 @@ async function handleCheckout({ request, env }) {
       orderId,
       amountCents: totalCents,
       customer: { name, phone, note },
-      description: `Pedido ${orderId} – GustX`,
+      description: `Pedido ${orderId} – Flash Store`,
     });
 
     if (env.ORDERS) {
