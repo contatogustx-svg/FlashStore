@@ -263,3 +263,49 @@
   }, { threshold: 0.08 });
   els.forEach(function (el) { io.observe(el); });
 })();
+
+/* carrossel de banners (troca sozinho) e botão do grupo */
+(function () {
+  var CFG = window.GUSTX || {};
+  var g = document.getElementById('btnGrupo');
+  if (g && CFG.grupo) { g.href = CFG.grupo; g.target = '_blank'; g.rel = 'noopener'; g.removeAttribute('data-soon'); }
+
+  var car = document.getElementById('car');
+  if (!car) return;
+  var slides = [].slice.call(car.querySelectorAll('.slide'));
+  var dotsBox = document.getElementById('carDots');
+  var i = 0, timer = null, x0 = null;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  slides.forEach(function (s, n) {
+    var d = document.createElement('button');
+    d.type = 'button'; d.setAttribute('aria-label', 'Ir para o banner ' + (n + 1));
+    d.onclick = function () { go(n); play(); };
+    dotsBox.appendChild(d);
+  });
+  var dots = [].slice.call(dotsBox.children);
+
+  function go(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, k) { s.classList.toggle('on', k === i); s.setAttribute('aria-hidden', k === i ? 'false' : 'true'); });
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+    var img = slides[i].querySelector('img'); if (img) img.loading = 'eager';
+  }
+  function stop() { clearInterval(timer); timer = null; }
+  function play() { stop(); if (still || slides.length < 2) return; timer = setInterval(function () { go(i + 1); }, 5000); }
+
+  car.querySelector('.prev').onclick = function () { go(i - 1); play(); };
+  car.querySelector('.next').onclick = function () { go(i + 1); play(); };
+  car.addEventListener('mouseenter', stop);
+  car.addEventListener('mouseleave', play);
+  car.addEventListener('focusin', stop);
+  car.addEventListener('focusout', play);
+  car.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; stop(); }, { passive: true });
+  car.addEventListener('touchend', function (e) {
+    if (x0 !== null) { var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); }
+    x0 = null; play();
+  });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else play(); });
+
+  go(0); play();
+})();
