@@ -16,13 +16,12 @@ const STREAMINGS = {
   spotify:       { name: 'Spotify Premium',                          cents: 1690 },
   paramount:     { name: 'Paramount Plus',                           cents: 2790 },
 };
-const RECHARGES = { vivo: 'Recarga Vivo', claro: 'Recarga Claro', tim: 'Recarga TIM', oi: 'Recarga Oi' };
+const RECHARGES = { vivo: 'Recarga Vivo', claro: 'Recarga Claro', tim: 'Recarga TIM' };
 // Valor da recarga (R$) -> quanto o cliente paga (centavos), por operadora.
 const RECHARGE_PRICES = {
   vivo:  { 20: 1250, 30: 1700, 35: 1900, 40: 2150, 50: 2700, 100: 3750, 200: 5250, 300: 7750 },
   claro: { 20: 1350, 25: 1550, 30: 1750, 35: 1950 },
   tim:   { 20: 1250, 30: 1700, 35: 1900 },
-  oi:    { 15: 1500, 20: 2000, 30: 3000, 50: 5000 },
 };
 
 function buildOrder(items) {
