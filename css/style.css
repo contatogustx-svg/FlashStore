@@ -380,3 +380,17 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .hot::after{content:"";position:absolute;inset:-8px}
 .hot:hover{background:#ffffff1f;box-shadow:0 0 0 2px #ffffffcc,0 0 22px #3fe27caa}
 .hot:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+/* ===== destaque que troca sozinho (Netflix, Disney, HBO...) ===== */
+.hero{--brand:#c8101c;--p1:#a8303a;--p2:#5a2cb0;--p3:#2a58c8}
+.p1{background:linear-gradient(160deg,var(--p1),color-mix(in srgb,var(--p1) 22%,#000))}
+.p2{background:linear-gradient(160deg,var(--p2),color-mix(in srgb,var(--p2) 22%,#000))}
+.p3{background:linear-gradient(160deg,var(--p3),color-mix(in srgb,var(--p3) 22%,#000))}
+.screen b{color:var(--brand);text-shadow:0 0 28px color-mix(in srgb,var(--brand) 55%,transparent)}
+.hero-text,.stage{transition:opacity .28s ease,transform .28s ease}
+.hero-grid.swap .hero-text,.hero-grid.swap .stage{opacity:0;transform:translateY(10px)}
+.hdots{display:flex;gap:8px;margin-top:20px}
+.hdots button{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#2a3f80;cursor:pointer;transition:.3s}
+.hdots button:hover{background:#4a6bc0}
+.hdots button.on{width:28px;background:linear-gradient(90deg,#2a58c8,#7fd8ff);box-shadow:0 0 10px #4fa8ff88}
+@media(prefers-reduced-motion:reduce){.hero-text,.stage{transition:none}}
