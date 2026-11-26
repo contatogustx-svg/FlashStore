@@ -27,3 +27,26 @@
     say(items.length ? items.length + ' item(ns): ' + items.join(', ') : 'Seu carrinho está vazio');
   });
 })();
+
+// destaca o item do menu da seção visível
+(function () {
+  var links = document.querySelectorAll('nav a');
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  function mark(id) {
+    if (!map[id]) return;
+    links.forEach(function (a) { a.classList.remove('on'); });
+    map[id].classList.add('on');
+  }
+  links.forEach(function (a) {
+    a.addEventListener('click', function () { mark(a.getAttribute('href').slice(1)); });
+  });
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  ['inicio', 'recargas', 'streamings', 'suporte'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+})();
