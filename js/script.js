@@ -264,13 +264,6 @@
         x.classList.toggle('on', x === b);
         x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
       });
-      var card = g.closest('.card');
-      var tag = card.querySelector('.tag');
-      tag.textContent = b.dataset.kind;
-      tag.classList.toggle('conta', b.hasAttribute('data-conta'));
-      var pr = card.querySelector('.price');
-      pr.textContent = 'R$ ' + parseFloat(b.dataset.price).toFixed(2).replace('.', ',') + ' ';
-      if (b.hasAttribute('data-monthly')) { var em = document.createElement('em'); em.textContent = '/ mês'; pr.appendChild(em); }
     });
   });
 
