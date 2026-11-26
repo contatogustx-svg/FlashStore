@@ -423,3 +423,11 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .tagline{padding:18px 14px;gap:10px 16px}.tagline h3{font-size:22px}.tagline p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.hero-text,.stage{transition:none}}
 @media(max-width:360px){nav{left:8px;right:8px;gap:0}nav a{min-width:0;padding:8px 0;font-size:8.8px}}
+
+/* ===== logos dos streamings em bolha ===== */
+.s .top{height:112px;font-size:0}
+.s .top .lg{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 30% 18%,color-mix(in srgb,var(--c) 30%,#10192f),#080d1c 78%);border:1px solid color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 10%,transparent),0 8px 22px color-mix(in srgb,var(--c) 38%,transparent),inset 0 1px 0 #ffffff1a;transition:transform .25s ease,box-shadow .25s ease}
+.s .top .lg img{display:block;width:66px;height:44px;object-fit:contain}
+.s:hover .top .lg{transform:translateY(-3px) scale(1.04);box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 16%,transparent),0 12px 28px color-mix(in srgb,var(--c) 50%,transparent),inset 0 1px 0 #ffffff1a}
+@media(max-width:560px){.s .top{height:104px}.s .top .lg{width:78px;height:78px}.s .top .lg img{width:56px;height:36px}}
+@media(prefers-reduced-motion:reduce){.s .top .lg{transition:none}}
