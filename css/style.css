@@ -317,3 +317,31 @@ body.lock{overflow:hidden}
 .done .buy{width:100%}
 @media(max-width:560px){.drawer{width:100%;border-left:0}.stp li{font-size:11px;gap:6px}.item{padding:12px;gap:4px 12px}}
 @media(prefers-reduced-motion:reduce){.drawer,.drawer.open{transition:none}.status .dot,.overlay{animation:none}}
+
+/* ===== menu flutuante: borda com brilho ===== */
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes spin{to{--a:360deg}}
+.nav,nav{--glow:#5b8fd9}
+.nav{position:relative;border-color:#22346a;background:linear-gradient(180deg,#0e1a40e6,#0a1230e6);box-shadow:0 14px 40px #000b,0 0 28px #2c5fd024,inset 0 1px 0 #ffffff12}
+.nav::before,.nav::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none}
+.nav::before{padding:1.5px;background:conic-gradient(from var(--a),#0000 0 28%,#2c5fd0 48%,#8fb2ee 64%,#fff 72%,#8fb2ee 80%,#2c5fd0 92%,#0000 100%),linear-gradient(#2a4286,#2a4286);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 6s linear infinite}
+.nav::after{z-index:-1;inset:-2px;background:conic-gradient(from var(--a),#0000 0 50%,#2c5fd0 78%,#0000 100%);filter:blur(14px);opacity:.5;animation:spin 6s linear infinite}
+.logo .crown{filter:drop-shadow(0 0 8px #d9a93a88)}
+.logo b{text-shadow:0 0 18px #4a80d4aa}
+nav a{position:relative;border:1px solid transparent;border-radius:12px;transition:color .2s,background .2s,border-color .2s,box-shadow .2s}
+nav a:hover{color:#fff;background:#12214e;border-color:#2a4286}
+nav a.on{color:#fff;background:linear-gradient(135deg,#2a58c8,#4a80d4);border-color:#8fb2ee66;box-shadow:0 0 18px #2c5fd080,inset 0 1px 0 #ffffff40}
+.cart{border-color:#2a4286;background:linear-gradient(180deg,#12214e,#0c1634);border-radius:12px;box-shadow:inset 0 1px 0 #ffffff14}
+.cart:hover{border-color:#7ba6ea;box-shadow:0 0 18px #2c5fd066,inset 0 1px 0 #ffffff20}
+.cart i{box-shadow:0 0 0 2px #0a1230,0 0 12px #d6403f99}
+@media(max-width:760px){
+.nav{background:linear-gradient(180deg,#0e1a40,#0a1230)}
+.nav::after{filter:blur(10px);opacity:.3}
+nav{border-color:#22346a;background:linear-gradient(180deg,#0e1a40f7,#0a1230f7);box-shadow:0 16px 40px #000d,0 0 28px #2c5fd030,inset 0 1px 0 #ffffff12;padding:6px}
+nav::before,nav::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none}
+nav::before{padding:1.5px;background:conic-gradient(from var(--a),#0000 0 28%,#2c5fd0 48%,#8fb2ee 64%,#fff 72%,#8fb2ee 80%,#2c5fd0 92%,#0000 100%),linear-gradient(#2a4286,#2a4286);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 6s linear infinite}
+nav::after{z-index:-1;inset:-2px;background:conic-gradient(from var(--a),#0000 0 50%,#2c5fd0 78%,#0000 100%);filter:blur(12px);opacity:.4;animation:spin 6s linear infinite}
+nav a{border-radius:15px}
+nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
+}
+@media(prefers-reduced-motion:reduce){.nav::before,.nav::after,nav::before,nav::after{animation:none}}
