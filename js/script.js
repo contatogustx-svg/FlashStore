@@ -17,7 +17,7 @@
     spotify: { c: '#1ed760', t: 'S' }, paramount: { c: '#2a8bff', t: 'P+' },
     netflix_tela: { c: '#e50914', t: 'N' }, netflix_conta: { c: '#e50914', t: 'N' }, disney_tela: { c: '#2f6bff', t: 'D+' }, disney_conta: { c: '#2f6bff', t: 'D+' },
     prime_sem: { c: '#00a8e1', t: 'P' }, prime_com: { c: '#00a8e1', t: 'P' }, hbo_tela: { c: '#7b2cff', t: 'H' }, hbo_conta: { c: '#7b2cff', t: 'H' },
-    vivo: { c: '#6a2cb8', t: 'V' }, claro: { c: '#c4242e', t: 'C' }, tim: { c: '#24449a', t: 'T' }, oi: { c: '#22903a', t: 'oi' }
+    vivo: { c: '#6a2cb8', t: 'V' }, claro: { c: '#c4242e', t: 'C' }, tim: { c: '#24449a', t: 'T' }
   };
   /* logo mostrada no carrinho para cada produto */
   var LOGO = {
@@ -27,7 +27,7 @@
     hbo_tela: ['img/hbomax.png', 'hbo'], hbo_conta: ['img/hbomax.png', 'hbo'],
     spotify: ['img/spotify.svg', 'spotify'], paramount: ['img/paramount-plus-logo.svg', 'paramount']
   };
-  var WORD = { vivo: 'vivo', claro: 'Claro', tim: 'TIM', oi: 'oi' };
+  var WORD = { vivo: 'vivo', claro: 'Claro', tim: 'TIM' };
   var $ = function (id) { return document.getElementById(id); };
   var brl = function (v) { return 'R$ ' + v.toFixed(2).replace('.', ','); };
   var total = function () { return cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0); };
@@ -267,14 +267,20 @@
 
 /* valores da recarga, efeito de entrada e barra ao rolar */
 (function () {
+  function money(n) { return 'R$ ' + Number(n).toFixed(2).replace('.', ','); }
   document.querySelectorAll('.amts').forEach(function (g) {
     g.addEventListener('click', function (e) {
       var b = e.target.closest('.amt');
       if (!b) return;
-      g.querySelectorAll('.amt').forEach(function (x) { x.classList.remove('on'); });
-      b.classList.add('on');
-      var pay = g.parentNode.querySelector('.pay b');
-      if (pay && b.dataset.p) pay.textContent = 'R$ ' + Number(b.dataset.p).toFixed(2).replace('.', ',');
+      g.querySelectorAll('.amt').forEach(function (x) { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
+      b.classList.add('on'); b.setAttribute('aria-pressed', 'true');
+      var box = g.parentNode.querySelector('.price-box');
+      if (!box || !b.dataset.p) return;
+      var v = Number(b.dataset.v), p = Number(b.dataset.p);
+      box.querySelector('.pb-p b').textContent = money(p);
+      box.querySelector('.pb-p s').textContent = money(v);
+      box.querySelector('.pb-t em').textContent = Math.round((v - p) / v * 100) + '% OFF';
+      box.classList.remove('pop'); void box.offsetWidth; box.classList.add('pop');
     });
   });
 
