@@ -197,7 +197,8 @@ body:not([data-tab="inicio"]) main>.wrap{padding-top:34px}
 .card:hover{box-shadow:0 18px 44px #000000aa,0 0 0 1px #3c5cb455}
 .card h4{font-size:16px}
 .s .body{gap:6px}.s strong{font-size:19px;color:#fff;margin:2px 0 6px}
-.amts{display:flex;justify-content:center;gap:6px;margin:6px 0 8px}
+.amts{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:6px 0 8px}
+.pay{font-size:12px;color:var(--muted);margin:0 0 10px;text-align:center}.pay b{color:#fff;font-weight:700}
 .amt{min-width:44px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:#0a1124;color:var(--muted);font:600 12px Poppins,sans-serif;cursor:pointer;transition:.2s}
 .amt::before{content:"R$ ";font-weight:400;opacity:.7}
 .amt:hover{border-color:var(--accent);color:#fff}
