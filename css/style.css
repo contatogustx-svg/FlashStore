@@ -600,3 +600,18 @@ footer .ct .ic.fill{color:#4ade80}
 .fbot-in{gap:6px;padding-top:20px;padding-bottom:20px}}
 @media(max-width:760px){.fbot{padding-bottom:44px}}
 @media(prefers-reduced-motion:reduce){.hero::before,.hero::after,.stage::after{animation:none}}
+
+/* ===== anti-piscada ===== */
+/* cards do carrossel: sem a animação de "aparecer" (era ela que fazia piscar ao passar) */
+.rail>.card,.rail>.card.reveal,.rail>.card.reveal.in{opacity:1!important;animation:none!important}
+.rail>.card{will-change:transform}
+/* destaque do topo: troca de cor leve e sem filtros pesados repintando a cada quadro */
+.hero{transition:--brand .5s ease}
+.o2{background:#4a2cb0;opacity:.16}
+.orb{animation:none}
+.hero::before{animation:none;will-change:auto}
+.stage::before{filter:none;width:min(100%,560px);animation:none;background:radial-gradient(ellipse closest-side,color-mix(in srgb,var(--brand) 32%,transparent) 0,color-mix(in srgb,var(--brand) 12%,transparent) 55%,transparent 100%)}
+.stage::after{filter:none;animation:none;opacity:.8;background:radial-gradient(ellipse closest-side,color-mix(in srgb,var(--brand) 50%,transparent),transparent)}
+.hero::after{animation:none;opacity:.45}
+.hero-text,.stage{transition:opacity .35s ease,transform .35s ease;will-change:opacity,transform}
+.brand{will-change:transform}
