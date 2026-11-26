@@ -359,7 +359,7 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 @media(prefers-reduced-motion:reduce){.logo b,.logo .mark{animation:none}}
 
 /* ===== banners em carrossel + atalhos ===== */
-.showcase{padding-top:18px;padding-bottom:6px;display:grid;gap:14px}
+.showcase{padding-top:18px;padding-bottom:6px;display:grid;gap:12px}
 .car{position:relative;aspect-ratio:1280/600;border-radius:22px;overflow:hidden;background:#0a1230;border:1px solid #22346a;box-shadow:0 18px 50px #000a,0 0 34px #2c5fd030}
 .car-track,.slide{position:absolute;inset:0;margin:0}
 .slide{opacity:0;visibility:hidden;transition:opacity .7s ease,visibility 0s .7s}
@@ -372,12 +372,7 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .car-dots{display:flex;justify-content:center;gap:8px;margin:-4px 0}
 .car-dots button{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#2a3f80;cursor:pointer;transition:.3s}
 .car-dots button.on{width:26px;background:linear-gradient(90deg,#2a58c8,#7fd8ff);box-shadow:0 0 10px #4fa8ff88}
-.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.qbtn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:16px;font-weight:700;font-size:16px;color:#05361a;background:linear-gradient(180deg,#3fe27c,#1fbf5a);box-shadow:0 8px 24px #25d36645,inset 0 1px 0 #ffffff66;transition:.2s}
-.qbtn .ic{font-size:24px}
-.qbtn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 12px 30px #25d36666,inset 0 1px 0 #ffffff66}
-@media(min-width:761px){.quick{grid-template-columns:repeat(2,minmax(0,240px));justify-content:center}}
-@media(max-width:760px){.showcase{padding-top:10px}.car{border-radius:16px}.car-nav{display:none}.qbtn{padding:13px 10px;font-size:15px}}
+@media(max-width:760px){.showcase{padding-top:10px}.car{border-radius:16px}.car-nav{display:none}}
 @media(prefers-reduced-motion:reduce){.slide,.slide.on{transition:none}}
 
 /* áreas clicáveis em cima dos botões desenhados nos banners */
