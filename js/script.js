@@ -15,12 +15,15 @@
   /* carrinho */
   document.querySelectorAll('.buy[data-item]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      items.push(btn.dataset.item);
+      var card = btn.closest('.card');
+      var chip = card && card.querySelector('.amt.on');
+      var name = btn.dataset.item + (chip ? ' – R$ ' + chip.dataset.v : '');
+      items.push(name);
       count.textContent = items.length;
       cartBtn.classList.remove('bump');
       void cartBtn.offsetWidth;
       cartBtn.classList.add('bump');
-      say(btn.dataset.item + ' adicionado ao carrinho');
+      say(name + ' adicionado ao carrinho');
     });
   });
   cartBtn.addEventListener('click', function () {
@@ -65,4 +68,31 @@
   });
 
   showTab(location.hash.slice(1), false);
+})();
+
+/* valores da recarga, efeito de entrada e barra ao rolar */
+(function () {
+  document.querySelectorAll('.amts').forEach(function (g) {
+    g.addEventListener('click', function (e) {
+      var b = e.target.closest('.amt');
+      if (!b) return;
+      g.querySelectorAll('.amt').forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+    });
+  });
+
+  var header = document.querySelector('header');
+  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 12); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var els = document.querySelectorAll('.card, .step, .panel');
+  els.forEach(function (el, i) { el.classList.add('reveal'); el.style.setProperty('--d', (i % 6) * 60 + 'ms'); });
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  els.forEach(function (el) { io.observe(el); });
 })();
