@@ -43,7 +43,7 @@
 </header>
 
 <main id="inicio">
-<section class="hero"><div class="orb o1"></div><div class="orb o2"></div>
+<section class="hero" data-tabs="inicio"><div class="orb o1"></div><div class="orb o2"></div>
 <div class="wrap hero-grid">
 <div class="hero-text">
 <span class="pill"><svg class="ic"><use href="#i-bolt"/></svg>Oferta de lançamento</span>
@@ -69,16 +69,16 @@
 </div></section>
 
 <div class="wrap">
-<section class="cats">
+<section class="cats" data-tabs="inicio">
 <a href="#recargas"><span class="bub"><svg class="ic"><use href="#i-phone"/></svg></span>Recargas de Celular</a>
 <a href="#streamings"><span class="bub"><svg class="ic"><use href="#i-tv"/></svg></span>Streamings</a>
-<a href="#games"><span class="bub"><svg class="ic"><use href="#i-game"/></svg></span>Games</a>
-<a href="#gifts"><span class="bub"><svg class="ic"><use href="#i-gift"/></svg></span>Presentes e Gift Cards</a>
+<a href="#games" data-soon><span class="bub"><svg class="ic"><use href="#i-game"/></svg></span>Games</a>
+<a href="#gifts" data-soon><span class="bub"><svg class="ic"><use href="#i-gift"/></svg></span>Presentes e Gift Cards</a>
 <a href="#seguranca"><span class="bub"><svg class="ic"><use href="#i-shield"/></svg></span>Segurança e Confiança</a>
 <a href="#entrega"><span class="bub"><svg class="ic"><use href="#i-bolt"/></svg></span>Entrega Imediata</a>
 </section>
 
-<section id="recargas">
+<section id="recargas" data-tabs="inicio recargas">
 <div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-phone"/></svg></span><div><h2>Recargas de Celular</h2><p>Fale mais, navegue mais, sem preocupações!</p></div></div><a class="all" href="#recargas">Ver todos<svg class="ic"><use href="#i-arrow"/></svg></a></div>
 <div class="grid g4">
 <article class="card vivo"><div class="top"><span>vivo</span></div><div class="body"><h4>Recarga Vivo</h4><small>Qualquer valor</small><button class="buy" data-item="Recarga Vivo"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
@@ -88,7 +88,7 @@
 </div>
 </section>
 
-<section id="streamings">
+<section id="streamings" data-tabs="inicio streamings">
 <div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-tv"/></svg></span><div><h2>Streamings</h2><p>Seus favoritos, sempre com você!</p></div></div><a class="all" href="#streamings">Ver todos<svg class="ic"><use href="#i-arrow"/></svg></a></div>
 <div class="grid g6">
 <article class="card s"><div class="top" style="--c:#e50914"><span style="color:#e50914">NETFLIX</span></div><div class="body"><h4>Netflix 4K</h4><small>Planos a partir de:</small><strong>R$ 24,90 <em>/ mês</em></strong><button class="buy" data-item="Netflix 4K"><svg class="ic"><use href="#i-cart"/></svg>Comprar Agora</button></div></article>
@@ -100,11 +100,62 @@
 </div>
 </section>
 
-<section class="trust" id="seguranca">
+<section class="trust" id="seguranca" data-tabs="inicio">
 <div id="entrega"><span class="bub"><svg class="ic"><use href="#i-bolt"/></svg></span><p>Entrega<br>Imediata</p></div>
 <div><span class="bub"><svg class="ic"><use href="#i-shield"/></svg></span><p>Compra<br>Segura</p></div>
-<div id="suporte"><span class="bub"><svg class="ic"><use href="#i-headset"/></svg></span><p>Suporte<br>Especializado</p></div>
+<div><span class="bub"><svg class="ic"><use href="#i-headset"/></svg></span><p>Suporte<br>Especializado</p></div>
 <div><span class="bub"><svg class="ic"><use href="#i-star"/></svg></span><p>Clientes<br>Satisfeitos</p></div>
+</section>
+
+<section class="how" data-tabs="recargas streamings">
+<h2>Como funciona</h2>
+<div class="steps">
+<div class="step"><b>1</b><h4>Escolha</h4><p>Selecione a operadora ou o streaming que você quer.</p></div>
+<div class="step"><b>2</b><h4>Pague</h4><p>Finalize a compra com Pix, cartão ou boleto.</p></div>
+<div class="step"><b>3</b><h4>Receba</h4><p>Acompanhe a entrega e fale com a gente se precisar.</p></div>
+</div>
+</section>
+
+<section class="page" id="conta" data-tabs="conta">
+<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-user"/></svg></span><div><h2>Minha Conta</h2><p>Entre para acompanhar seus pedidos.</p></div></div></div>
+<div class="two">
+<form class="panel" id="loginForm">
+<h3>Entrar</h3>
+<label>E-mail<input type="email" placeholder="voce@email.com" required></label>
+<label>Senha<input type="password" placeholder="Sua senha" required></label>
+<button class="buy" type="submit">Entrar</button>
+<small>Ainda não tem conta? O cadastro estará disponível em breve.</small>
+</form>
+<div class="panel">
+<h3>Vantagens da conta</h3>
+<ul class="benefits">
+<li><svg class="ic"><use href="#i-check"/></svg>Acompanhe seus pedidos em um só lugar</li>
+<li><svg class="ic"><use href="#i-check"/></svg>Repita uma recarga em poucos cliques</li>
+<li><svg class="ic"><use href="#i-check"/></svg>Receba ofertas e novidades</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="page" id="suporte" data-tabs="suporte">
+<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-headset"/></svg></span><div><h2>Suporte</h2><p>Dúvidas frequentes e atendimento.</p></div></div></div>
+<div class="two">
+<div class="panel faq">
+<h3>Perguntas frequentes</h3>
+<details><summary>Como recebo minha recarga?</summary><p>Depois da confirmação do pagamento, a recarga é enviada ao número que você informou.</p></details>
+<details><summary>Quais formas de pagamento posso usar?</summary><p>Pix, cartão e boleto.</p></details>
+<details><summary>Errei o número na recarga. E agora?</summary><p>Fale com a gente pelo WhatsApp o quanto antes, com o comprovante em mãos.</p></details>
+<details><summary>Como funciona a assinatura de streaming?</summary><p>Você escolhe o plano, finaliza a compra e recebe as instruções de acesso pelo atendimento.</p></details>
+</div>
+<div class="panel">
+<h3>Fale com a gente</h3>
+<ul class="ct2">
+<li><svg class="ic"><use href="#i-clock"/></svg>Todos os dias, 8h às 22h</li>
+<li><svg class="ic"><use href="#i-mail"/></svg>contato@gustx.com.br</li>
+</ul>
+<a class="wa" href="https://wa.me/5500000000000" target="_blank" rel="noopener"><svg class="ic fill big"><use href="#i-wa"/></svg><span><b>Fale Conosco</b>pelo WhatsApp</span></a>
+</div>
+</div>
 </section>
 </div>
 </main>
