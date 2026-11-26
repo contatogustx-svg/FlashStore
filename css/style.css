@@ -669,3 +669,28 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 .price-box.pop{animation:pbpop .3s ease}
 @keyframes pbpop{0%{transform:scale(.97);opacity:.6}100%{transform:none;opacity:1}}
 @media(prefers-reduced-motion:reduce){.price-box.pop{animation:none}.amt{transition:none}}
+
+/* ===== Categorias (topo da home) ===== */
+.cats{gap:14px}
+.cats a{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 10px 18px;border-radius:20px;border:1px solid color-mix(in srgb,var(--c) 22%,#1e2c52);background:radial-gradient(120% 80% at 50% 0,color-mix(in srgb,var(--c) 20%,transparent),transparent 70%),linear-gradient(180deg,#0f1838,#0a1124);transition:transform .3s ease,border-color .3s,box-shadow .3s}
+.cats a::before{content:"";position:absolute;left:18%;right:18%;top:0;height:2px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.75;z-index:1}
+.cats a::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 60% at 50% 0,color-mix(in srgb,var(--c) 30%,transparent),transparent 75%);opacity:0;transition:opacity .3s}
+.cats a:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--c) 70%,#fff 0%);background:radial-gradient(120% 80% at 50% 0,color-mix(in srgb,var(--c) 20%,transparent),transparent 70%),linear-gradient(180deg,#0f1838,#0a1124);box-shadow:0 16px 36px #000000aa,0 0 0 1px color-mix(in srgb,var(--c) 35%,transparent),0 10px 34px color-mix(in srgb,var(--c) 28%,transparent)}
+.cats a:hover::after{opacity:1}
+.cats .bub{width:58px;height:58px;border-radius:18px;font-size:26px;color:#fff;border:0;background:linear-gradient(145deg,var(--c),color-mix(in srgb,var(--c) 45%,#0a1124));box-shadow:inset 0 1px 0 #ffffff55,0 0 0 1px #ffffff1a,0 10px 24px color-mix(in srgb,var(--c) 45%,transparent);transition:transform .3s ease}
+.cats .bub .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
+.cats a:hover .bub{transform:scale(1.1) rotate(-5deg)}
+.cats .ct{display:grid;gap:3px;min-width:0}
+.cats .ct b{font-size:13.5px;font-weight:600;color:#fff;line-height:1.25}
+.cats .ct small{font-size:11px;font-weight:400;color:var(--muted)}
+.cats .tag{position:absolute;top:10px;right:10px;font-style:normal;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:99px;color:color-mix(in srgb,var(--c) 40%,#fff);background:color-mix(in srgb,var(--c) 18%,#0a1124);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.cats a[data-soon] .bub{filter:saturate(.75)}
+@media(max-width:560px){
+.cats{gap:10px}
+.cats a{flex-direction:row;text-align:left;gap:12px;padding:14px 12px;border-radius:16px}
+.cats .bub{width:44px;height:44px;font-size:21px;border-radius:14px;flex:none}
+.cats .ct b{font-size:12.5px}.cats .ct small{font-size:10.5px}
+.cats .tag{display:none}
+.cats a:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){.cats a,.cats .bub{transition:none}}
