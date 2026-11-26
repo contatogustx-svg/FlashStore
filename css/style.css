@@ -142,3 +142,16 @@ img,svg{max-width:100%}
 .fbot-in{flex-direction:column;text-align:center}}
 @media(max-width:360px){.g4,.g6{grid-template-columns:1fr}.cats{grid-template-columns:1fr}}
 @media(max-width:1000px){.cart{margin-left:auto}}
+
+/* menus flutuantes */
+html{scroll-padding-top:104px}
+header{background:none;backdrop-filter:none;border:0;pointer-events:none;padding:12px 14px 0}
+.nav{pointer-events:auto;padding:8px 10px 8px 18px;border:1px solid #243764;border-radius:18px;background:#0a1230d9;backdrop-filter:blur(16px);box-shadow:0 12px 34px #000a}
+@media(max-width:760px){
+.nav{backdrop-filter:none;background:#0b1330f5;padding:8px 10px 8px 14px}
+nav{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:30;width:auto;margin:0;order:0;justify-content:space-around;gap:2px;padding:6px;border:1px solid #243764;border-radius:20px;background:#0b1330f5;box-shadow:0 14px 36px #000c;overflow:visible}
+nav a{flex:1;flex-direction:column;justify-content:center;gap:3px;padding:8px 2px;font-size:11px;border-radius:14px}
+nav a .ic{font-size:20px}
+body{padding-bottom:96px}
+.wfloat{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+.toast{bottom:calc(98px + env(safe-area-inset-bottom,0px))}}
