@@ -14,7 +14,6 @@ const STREAMINGS = {
   hbo_tela:      { name: 'HBO Max Platinum – Tela privada mensal',   cents: 668 },
   hbo_conta:     { name: 'HBO Max Platinum 4K – Conta completa',     cents: 1690 },
   spotify:       { name: 'Spotify Premium',                          cents: 1690 },
-  dazn:          { name: 'Dazze',                                    cents: 1990 },
   paramount:     { name: 'Paramount Plus',                           cents: 2790 },
 };
 const RECHARGES = { vivo: 'Recarga Vivo', claro: 'Recarga Claro', tim: 'Recarga TIM', oi: 'Recarga Oi' };
