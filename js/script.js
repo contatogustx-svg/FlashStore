@@ -399,7 +399,7 @@
     if (n === i || busy) return;
     if (still) { apply(n); return; }
     busy = true; grid.classList.add('swap');
-    setTimeout(function () { apply(n); grid.classList.remove('swap'); busy = false; }, 280);
+    setTimeout(function () { apply(n); grid.classList.remove('swap'); busy = false; }, 380);
   }
   function stop() { clearInterval(timer); timer = null; }
   function play() { stop(); if (still) return; timer = setInterval(function () { go(i + 1); }, 6000); }
