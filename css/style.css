@@ -707,3 +707,14 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 .pix-top .pixbadge{display:inline-flex;padding:9px 16px;border-radius:12px;background:#fff}
 .pix-top .pixmark{width:120px}
 .pay .pixmark{padding:0;border:0;border-radius:0;background:none}
+
+/* ===== Selo "Seus dados protegidos" (rodapé) ===== */
+.sec-note{display:flex;align-items:center;gap:10px;width:fit-content;max-width:100%;margin:16px 0 0;padding:9px 14px 9px 9px;border-radius:16px;border:1px solid #1f4a38;background:radial-gradient(120% 160% at 0 0,#34d27b26,transparent 62%),linear-gradient(180deg,#0c1d19,#08130f);box-shadow:inset 0 1px 0 #ffffff0d,0 8px 22px #00000055;color:#fff;font-size:inherit}
+.sn-ic{position:relative;flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;color:#fff;background:linear-gradient(145deg,#3ee08a,#128a52);box-shadow:inset 0 1px 0 #ffffff55,0 6px 16px #34d27b44}
+.sn-ic::after{content:"";position:absolute;inset:0;border-radius:12px;border:2px solid #34d27b;opacity:0;animation:snring 2.8s ease-out infinite}
+.sec-note .sn-ic .ic{width:21px;height:21px;color:#fff;filter:drop-shadow(0 0 5px #ffffffaa)}
+.sn-tx{display:grid;gap:1px;min-width:0}
+.sn-tx b{white-space:nowrap;font-size:13px;font-weight:600;line-height:1.25;color:#fff}
+.sn-tx small{font-size:11.5px;line-height:1.2;color:#7fcfa4}
+@keyframes snring{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(1.35);opacity:0}}
+@media(prefers-reduced-motion:reduce){.sn-ic::after{animation:none}}
