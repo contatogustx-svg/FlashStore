@@ -4,7 +4,7 @@
   try { cart = JSON.parse(localStorage.getItem('gustx-cart') || '[]'); } catch (e) { cart = []; }
   if (!Array.isArray(cart)) cart = [];
   /* descarta itens antigos que não existem mais na loja */
-  cart = cart.filter(function (it) { return it && document.querySelector('.buy[data-id="' + it.id + '"]'); });
+  cart = cart.filter(function (it) { return it && document.querySelector('.buy[data-id="' + it.id + '"], .opt[data-id="' + it.id + '"]'); });
   var count = document.getElementById('count');
   var cartBtn = document.getElementById('cartBtn');
   var toast = document.getElementById('toast');
@@ -101,14 +101,17 @@
   drawer.querySelectorAll('[data-close]').forEach(function (a) { a.addEventListener('click', closeDrawer); });
   drawer.querySelectorAll('[data-back]').forEach(function (b) { b.addEventListener('click', function () { view(b.dataset.back); }); });
 
-  document.querySelectorAll('.buy[data-item]').forEach(function (btn) {
+  document.querySelectorAll('.buy[data-item], .buy[data-multi]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var card = btn.closest('.card');
+      /* card com opções (ex.: Tela privada / Conta completa): usa a opção marcada */
+      var src = btn.hasAttribute('data-multi') ? card.querySelector('.opt.on') : btn;
+      if (!src) return;
       var chip = card && card.querySelector('.amt.on');
-      var price = chip ? parseFloat(chip.dataset.v) : parseFloat(btn.dataset.price);
-      var name = btn.dataset.item + (chip ? ' – R$ ' + chip.dataset.v : '');
-      var found = cart.filter(function (i) { return i.id === btn.dataset.id && i.name === name; })[0];
-      if (found) found.qty += 1; else cart.push({ id: btn.dataset.id, value: chip ? price : null, name: name, kind: btn.dataset.kind || '', price: price, qty: 1 });
+      var price = chip ? parseFloat(chip.dataset.v) : parseFloat(src.dataset.price);
+      var name = src.dataset.item + (chip ? ' – R$ ' + chip.dataset.v : '');
+      var found = cart.filter(function (i) { return i.id === src.dataset.id && i.name === name; })[0];
+      if (found) found.qty += 1; else cart.push({ id: src.dataset.id, value: chip ? price : null, name: name, kind: src.dataset.kind || '', price: price, qty: 1 });
       save(); render();
       cartBtn.classList.remove('bump'); void cartBtn.offsetWidth; cartBtn.classList.add('bump');
       openDrawer();
@@ -253,6 +256,24 @@
     });
   });
 
+  document.querySelectorAll('.opts').forEach(function (g) {
+    g.addEventListener('click', function (e) {
+      var b = e.target.closest('.opt');
+      if (!b) return;
+      g.querySelectorAll('.opt').forEach(function (x) {
+        x.classList.toggle('on', x === b);
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+      var card = g.closest('.card');
+      var tag = card.querySelector('.tag');
+      tag.textContent = b.dataset.kind;
+      tag.classList.toggle('conta', b.hasAttribute('data-conta'));
+      var pr = card.querySelector('.price');
+      pr.textContent = 'R$ ' + parseFloat(b.dataset.price).toFixed(2).replace('.', ',') + ' ';
+      if (b.hasAttribute('data-monthly')) { var em = document.createElement('em'); em.textContent = '/ mês'; pr.appendChild(em); }
+    });
+  });
+
   var header = document.querySelector('header');
   function onScroll() { header.classList.toggle('scrolled', window.scrollY > 12); }
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -372,8 +393,10 @@
 
   /* "Assinar agora" coloca o streaming que está na tela no carrinho */
   cta.addEventListener('click', function (e) {
-    var btn = document.querySelector('.buy[data-id="' + cta.getAttribute('data-id') + '"]');
-    if (btn) { e.preventDefault(); e.stopPropagation(); btn.click(); }
+    var id = cta.getAttribute('data-id');
+    var opt = document.querySelector('.opt[data-id="' + id + '"]');
+    var btn = opt ? opt.closest('.card').querySelector('.buy') : document.querySelector('.buy[data-id="' + id + '"]');
+    if (btn) { e.preventDefault(); e.stopPropagation(); if (opt) opt.click(); btn.click(); }
   });
   hero.addEventListener('mouseenter', stop);
   hero.addEventListener('mouseleave', play);
