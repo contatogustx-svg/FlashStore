@@ -394,3 +394,8 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .hdots button:hover{background:#4a6bc0}
 .hdots button.on{width:28px;background:linear-gradient(90deg,#2a58c8,#7fd8ff);box-shadow:0 0 10px #4fa8ff88}
 @media(prefers-reduced-motion:reduce){.hero-text,.stage{transition:none}}
+
+/* etiqueta do tipo de produto (tela privada / conta completa) */
+.card .tag{align-self:center;margin:2px 0 4px;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600;color:#9cc0f0;background:#12214e;border:1px solid #2a4286}
+.card .tag.conta{color:#ffd98a;background:#35260a;border-color:#7a5a1a}
+.card .s h4,.s h4{line-height:1.25}
