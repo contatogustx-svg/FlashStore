@@ -652,23 +652,26 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 /* ===== Seletor de valor da recarga ===== */
 .g3{max-width:1040px;margin-left:auto;margin-right:auto}
 @media(max-width:900px){.g3{grid-template-columns:1fr;max-width:420px}}
-.card .body .amts{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:8px;margin:10px 0 14px}
-.amt{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:0;padding:9px 2px 8px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,#0e1736,#0a1124);color:#b4bfd9;font:700 16px/1.1 Poppins,sans-serif;cursor:pointer;transition:transform .15s,border-color .2s,background .2s,box-shadow .2s,color .2s}
-.amt::before{content:"R$";font-size:9.5px;font-weight:500;letter-spacing:.6px;opacity:.6}
-.amt:hover{border-color:var(--accent);color:#fff;transform:translateY(-2px)}
+.card.vivo{--b1:#8b3df0;--b2:#5a1fb8}
+.card.claro{--b1:#ea3340;--b2:#b01723}
+.card.tim{--b1:#3b78ff;--b2:#1a44b8}
+.card .body .amts{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);grid-auto-rows:44px;align-content:start;gap:8px;min-height:96px;margin:12px 0 16px}
+.amt{display:flex;align-items:baseline;justify-content:center;gap:4px;min-width:0;padding:0;border-radius:12px;border:1px solid #ffffff14;background:#ffffff0a;color:#c3cce3;font:700 16px/44px Poppins,sans-serif;cursor:pointer;transition:transform .15s,border-color .2s,background .2s,box-shadow .2s,color .2s}
+.amt::before{content:"R$";font-size:10.5px;font-weight:500;color:#7f8bab;transition:color .2s}
+.amt:hover{border-color:var(--b1);color:#fff;background:#ffffff12}
 .amt:active{transform:scale(.96)}
-.amt.on{background:var(--grad);border-color:#7fa6ee;color:#fff;box-shadow:0 6px 16px #2c5fd055,inset 0 1px 0 #ffffff33}
-.amt.on::before{opacity:.85}
-.amt.on::after{content:"";position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#25d366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23062' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/10px no-repeat;border:2px solid var(--panel)}
-.price-box{margin:auto 0 12px;padding:10px 14px 11px;border-radius:12px;border:1px solid #2a3d7a;background:linear-gradient(135deg,#101d45,#0b1430);text-align:left}
-.pb-t{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--muted)}
-.pb-t em{font-style:normal;font-weight:700;font-size:10.5px;letter-spacing:.4px;padding:2px 8px;border-radius:99px;color:#062;background:#25d366}
-.pb-p{display:flex;align-items:baseline;gap:10px;margin-top:2px}
-.pb-p b{font-size:24px;font-weight:800;color:#fff;letter-spacing:-.5px}
-.pb-p s{font-size:12.5px;color:#7f8bab}
-.price-box.pop{animation:pbpop .3s ease}
-@keyframes pbpop{0%{transform:scale(.97);opacity:.6}100%{transform:none;opacity:1}}
-@media(prefers-reduced-motion:reduce){.price-box.pop{animation:none}.amt{transition:none}}
+.amt.on{border-color:transparent;background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;box-shadow:0 8px 20px color-mix(in srgb,var(--b1) 40%,transparent),inset 0 1px 0 #ffffff44}
+.amt.on::before{color:#ffffffcc}
+.price-box{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:auto 0 14px;padding:12px 16px;border-radius:14px;border:1px solid #ffffff12;background:linear-gradient(135deg,#ffffff0d,#ffffff05);text-align:left}
+.pb-main{display:grid;gap:1px}
+.pb-main small{font-size:11px;color:var(--muted);letter-spacing:.3px}
+.pb-main b{font-size:26px;line-height:1.1;font-weight:800;color:#fff;letter-spacing:-.6px}
+.pb-side{display:grid;justify-items:end;gap:5px}
+.pb-side em{font-style:normal;font-weight:700;font-size:11px;letter-spacing:.3px;padding:3px 9px;border-radius:99px;color:#04301a;background:#34d27b}
+.pb-side s{font-size:12px;color:#7f8bab}
+.price-box.pop .pb-main b{animation:pbpop .3s ease}
+@keyframes pbpop{0%{transform:translateY(4px);opacity:.4}100%{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.price-box.pop .pb-main b{animation:none}.amt{transition:none}}
 
 /* ===== Categorias (topo da home) ===== */
 .cats{gap:14px}
