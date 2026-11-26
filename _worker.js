@@ -17,7 +17,13 @@ const STREAMINGS = {
   paramount:     { name: 'Paramount Plus',                           cents: 2790 },
 };
 const RECHARGES = { vivo: 'Recarga Vivo', claro: 'Recarga Claro', tim: 'Recarga TIM', oi: 'Recarga Oi' };
-const RECHARGE_VALUES = [15, 20, 30, 50]; // valores aceitos (R$)
+// Valor da recarga (R$) -> quanto o cliente paga (centavos), por operadora.
+const RECHARGE_PRICES = {
+  vivo:  { 20: 1250, 30: 1700, 35: 1900, 40: 2150, 50: 2700, 100: 3750, 200: 5250, 300: 7750 },
+  claro: { 20: 1350, 25: 1550, 30: 1750, 35: 1950 },
+  tim:   { 20: 1250, 30: 1700, 35: 1900 },
+  oi:    { 15: 1500, 20: 2000, 30: 3000, 50: 5000 },
+};
 
 function buildOrder(items) {
   if (!Array.isArray(items) || items.length === 0 || items.length > 20) throw new Error('Carrinho inválido.');
@@ -31,8 +37,8 @@ function buildOrder(items) {
       ({ name, cents } = STREAMINGS[it.id]);
     } else if (Object.hasOwn(RECHARGES, it.id)) {
       const v = Number(it.value);
-      if (!RECHARGE_VALUES.includes(v)) throw new Error('Valor de recarga inválido.');
-      name = `${RECHARGES[it.id]} – R$ ${v}`; cents = v * 100;
+      if (!Object.hasOwn(RECHARGE_PRICES[it.id], v)) throw new Error('Valor de recarga inválido.');
+      name = `${RECHARGES[it.id]} – R$ ${v}`; cents = RECHARGE_PRICES[it.id][v];
     } else {
       throw new Error('Produto inválido.');
     }
