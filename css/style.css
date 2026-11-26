@@ -507,3 +507,40 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .trust .bub{width:44px;height:44px;font-size:21px;border-radius:13px}
 .trust .tx p{font-size:14px}.trust .tx small{font-size:11.5px}}
 @media(prefers-reduced-motion:reduce){.trust>div::before,.trust>div::after{animation:none}}
+
+/* ===== carrinho: visual novo com logo do produto ===== */
+.drawer{background:radial-gradient(120% 40% at 50% 0,#1a2c6a55,transparent),linear-gradient(180deg,#0e1838 0,#0a1226 240px,#070c1b 100%)}
+.d-head{padding:22px 22px 16px}
+.d-ttl .bub{width:48px;height:48px;border-radius:15px;font-size:22px;color:#fff;background:linear-gradient(135deg,#2a58c8,#3d8bff 60%,#4fc3ff);border:0;box-shadow:inset 0 1px 0 #ffffff55,0 8px 22px #2c6bff66}
+.d-ttl h2{font-size:21px;letter-spacing:-.3px}
+.d-x{border-radius:50%}
+.items{gap:14px}
+.item{--c:#2c5fd0;overflow:hidden;grid-template-columns:68px 1fr auto;gap:6px 14px;padding:14px;border-radius:18px;border:1px solid color-mix(in srgb,var(--c) 28%,#223463);background:linear-gradient(135deg,color-mix(in srgb,var(--c) 12%,#0f1b3d),#0b1429 70%);box-shadow:0 10px 26px #00000055;transition:border-color .25s,transform .25s}
+.item::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--c);box-shadow:0 0 14px var(--c)}
+.item:hover{border-color:color-mix(in srgb,var(--c) 55%,#223463)}
+.item .tile{position:relative;overflow:hidden;width:68px;height:68px;border-radius:16px;font-weight:800;letter-spacing:-.5px;background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--c) 70%,#0a1020),color-mix(in srgb,var(--c) 14%,#0a1020) 95%);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);box-shadow:0 8px 20px color-mix(in srgb,var(--c) 30%,transparent),inset 0 1px 0 #ffffff25}
+.item .tile img{display:block;width:auto;height:30px;max-width:54px;object-fit:contain;filter:drop-shadow(0 2px 6px #0007)}
+.item .tile[data-logo=netflix] img{height:22px;max-width:56px}
+.item .tile[data-logo=disney] img{height:42px}
+.item .tile[data-logo=prime] img{height:30px;max-width:56px}
+.item .tile[data-logo=hbo] img{height:44px}
+.item .tile[data-logo=spotify] img{height:24px;max-width:58px}
+.item .tile[data-logo=paramount] img{height:34px;scale:2.3}
+.item .tile.word{font-size:19px;color:#fff;font-style:italic}
+.item .tile.w-tim{font-size:20px}
+.item .tile.w-oi{font-size:24px;color:#0a3a16;background:#6cc83e;border-color:#9be26f}
+.item .info b{font-size:15.5px;font-weight:700;letter-spacing:-.2px}
+.item .info small{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;margin-top:5px}
+.item .info .chip{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:600;color:color-mix(in srgb,var(--c) 40%,#fff);background:color-mix(in srgb,var(--c) 18%,#0a1124);border:1px solid color-mix(in srgb,var(--c) 40%,transparent)}
+.item .info em{font-style:normal;font-size:11.5px;color:var(--muted)}
+.item .pr{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.item .qty{margin-top:8px;padding:3px;background:#080f26;border-color:#2a3f80}
+.item .qty button{width:28px;height:28px}
+.item .rm{margin-top:8px;border:1px solid #2a3558;background:#0b1330}
+.item .rm:hover{border-color:#7a2a3a}
+.d-body .sum{border-radius:18px}
+.d-foot{padding:18px 22px 20px;background:linear-gradient(180deg,#0a1128,#070c1b);border-top:1px solid #243764;box-shadow:0 -18px 40px #00000066}
+.d-foot .sum{padding:14px 16px;border-radius:16px;border:1px solid #223463;background:linear-gradient(135deg,#112050,#0b1429)}
+.d-foot .sum span{font-size:13px;font-weight:500}
+.d-foot .sum b{font-size:28px;background:linear-gradient(135deg,#fff,#a9c9ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:560px){.item{grid-template-columns:60px 1fr auto;padding:12px}.item .tile{width:60px;height:60px}.item .pr{font-size:16px}}
