@@ -2,6 +2,9 @@
   var CFG = window.GUSTX || {};
   var cart = [];
   try { cart = JSON.parse(localStorage.getItem('gustx-cart') || '[]'); } catch (e) { cart = []; }
+  if (!Array.isArray(cart)) cart = [];
+  /* descarta itens antigos que não existem mais na loja */
+  cart = cart.filter(function (it) { return it && document.querySelector('.buy[data-id="' + it.id + '"]'); });
   var count = document.getElementById('count');
   var cartBtn = document.getElementById('cartBtn');
   var toast = document.getElementById('toast');
@@ -12,6 +15,8 @@
   var BRAND = {
     netflix: { c: '#e50914', t: 'N' }, disney: { c: '#2f6bff', t: 'D+' }, hbomax: { c: '#7b2cff', t: 'H' },
     spotify: { c: '#1ed760', t: 'S' }, dazn: { c: '#ff6a1a', t: 'D' }, paramount: { c: '#2a8bff', t: 'P+' },
+    netflix_tela: { c: '#e50914', t: 'N' }, netflix_conta: { c: '#e50914', t: 'N' }, disney_tela: { c: '#2f6bff', t: 'D+' }, disney_conta: { c: '#2f6bff', t: 'D+' },
+    prime_sem: { c: '#00a8e1', t: 'P' }, prime_com: { c: '#00a8e1', t: 'P' }, hbo_tela: { c: '#7b2cff', t: 'H' }, hbo_conta: { c: '#7b2cff', t: 'H' },
     vivo: { c: '#6a2cb8', t: 'V' }, claro: { c: '#c4242e', t: 'C' }, tim: { c: '#24449a', t: 'T' }, oi: { c: '#22903a', t: 'oi' }
   };
   var $ = function (id) { return document.getElementById(id); };
@@ -41,7 +46,7 @@
       var info = document.createElement('div'); info.className = 'info';
       var name = document.createElement('b'); name.textContent = parts[0];
       var kind = document.createElement('small');
-      kind.textContent = it.value ? 'Recarga de ' + brl(it.price) : 'Assinatura mensal' + (it.qty > 1 ? ' · ' + brl(it.price) + ' cada' : '');
+      kind.textContent = it.value ? 'Recarga de ' + brl(it.price) : (it.kind || 'Assinatura mensal') + (it.qty > 1 ? ' · ' + brl(it.price) + ' cada' : '');
       info.append(name, kind);
       var pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = brl(it.price * it.qty);
       var q = document.createElement('div'); q.className = 'qty';
@@ -102,8 +107,8 @@
       var chip = card && card.querySelector('.amt.on');
       var price = chip ? parseFloat(chip.dataset.v) : parseFloat(btn.dataset.price);
       var name = btn.dataset.item + (chip ? ' – R$ ' + chip.dataset.v : '');
-      var found = cart.filter(function (i) { return i.name === name; })[0];
-      if (found) found.qty += 1; else cart.push({ id: btn.dataset.id, value: chip ? price : null, name: name, price: price, qty: 1 });
+      var found = cart.filter(function (i) { return i.id === btn.dataset.id && i.name === name; })[0];
+      if (found) found.qty += 1; else cart.push({ id: btn.dataset.id, value: chip ? price : null, name: name, kind: btn.dataset.kind || '', price: price, qty: 1 });
       save(); render();
       cartBtn.classList.remove('bump'); void cartBtn.offsetWidth; cartBtn.classList.add('bump');
       openDrawer();
@@ -315,9 +320,10 @@
   var grid = hero && hero.querySelector('.hero-grid');
   if (!grid) return;
   var DATA = [
-    { id: 'netflix',   a: 'Netflix',   b: '4K',      sub: 'por um preço imperdível!',        logo: 'N',   tag: '4K ULTRA HD',   price: 'R$ 24,90', c: '#c8101c', p: ['#a8303a', '#5a2cb0', '#2a58c8'], li: ['Filmes e séries de lançamentos', 'Qualidade 4K Ultra HD', 'Acesso em todos os dispositivos'] },
-    { id: 'disney',    a: 'Disney',    b: 'Plus',    sub: 'diversão para toda a família!',    logo: 'D+',  tag: 'DISNEY PLUS',   price: 'R$ 24,90', c: '#3b7bff', p: ['#2f6bff', '#6a2cb8', '#1a3a9a'], li: ['Disney, Pixar, Marvel e Star Wars', 'Filmes e séries para todas as idades', 'Acesso em todos os dispositivos'] },
-    { id: 'hbomax',    a: 'HBO',       b: 'Max',     sub: 'séries e filmes de tirar o fôlego!', logo: 'max', tag: 'HBO MAX',       price: 'R$ 24,90', c: '#8a4dff', p: ['#7b2cff', '#2a58c8', '#4a1a9a'], li: ['Séries originais e lançamentos', 'Filmes e documentários', 'Acesso em todos os dispositivos'] },
+    { id: 'netflix_tela', a: 'Netflix',   b: '4K',      sub: 'por um preço imperdível!',        logo: 'N',   tag: '4K ULTRA HD',   price: 'R$ 9,88', c: '#c8101c', p: ['#a8303a', '#5a2cb0', '#2a58c8'], li: ['Filmes e séries de lançamentos', 'Qualidade 4K Ultra HD', 'Acesso em todos os dispositivos'] },
+    { id: 'disney_tela', a: 'Disney',    b: 'Plus',    sub: 'diversão para toda a família!',    logo: 'D+',  tag: 'DISNEY PLUS',   price: 'R$ 8,79', c: '#3b7bff', p: ['#2f6bff', '#6a2cb8', '#1a3a9a'], li: ['Disney, Pixar, Marvel e Star Wars', 'Filmes e séries para todas as idades', 'Acesso em todos os dispositivos'] },
+    { id: 'prime_com', a: 'Prime',     b: 'Vídeo',   sub: 'filmes e séries para maratonar!',   logo: 'P',   tag: 'PRIME VIDEO',   price: 'R$ 4,68',  c: '#2db8ee', p: ['#00a8e1', '#2a58c8', '#1a3a9a'], li: ['Filmes, séries e Originais Prime', 'Opção sem anúncios disponível', 'Acesso em todos os dispositivos'] },
+    { id: 'hbo_tela', a: 'HBO',       b: 'Max',     sub: 'séries e filmes de tirar o fôlego!', logo: 'max', tag: 'HBO MAX',       price: 'R$ 6,68', c: '#8a4dff', p: ['#7b2cff', '#2a58c8', '#4a1a9a'], li: ['Séries originais e lançamentos', 'Filmes e documentários', 'Acesso em todos os dispositivos'] },
     { id: 'spotify',   a: 'Spotify',   b: 'Premium', sub: 'sua música, sem interrupções!',    logo: 'S',   tag: 'PREMIUM',       price: 'R$ 16,90', c: '#1ed760', p: ['#1ed760', '#2a58c8', '#0f8a3c'], li: ['Músicas sem anúncios', 'Ouça offline, onde quiser', 'Acesso em todos os dispositivos'] },
     { id: 'dazn',      a: 'Dazze',     b: 'Esporte', sub: 'o esporte que você ama!',          logo: 'D',   tag: 'AO VIVO',       price: 'R$ 19,90', c: '#ff7a2e', p: ['#ff6a1a', '#2a58c8', '#a8303a'], li: ['Esportes ao vivo e sob demanda', 'Lutas, futebol e muito mais', 'Acesso em todos os dispositivos'] },
     { id: 'paramount', a: 'Paramount', b: 'Plus',    sub: 'filmes e séries para maratonar!',  logo: 'P+',  tag: 'PARAMOUNT+',    price: 'R$ 27,90', c: '#4a9bff', p: ['#2a8bff', '#5a2cb0', '#1a3a9a'], li: ['Filmes, séries e lançamentos', 'Conteúdo para toda a família', 'Acesso em todos os dispositivos'] }
