@@ -155,3 +155,33 @@ nav a .ic{font-size:20px}
 body{padding-bottom:96px}
 .wfloat{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 .toast{bottom:calc(98px + env(safe-area-inset-bottom,0px))}}
+
+/* abas */
+[data-tabs][hidden]{display:none!important}
+body:not([data-tab="inicio"]) .all{display:none}
+.wrap>section:not(.cats):not(.trust){animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+body:not([data-tab="inicio"]) main>.wrap{padding-top:34px}
+.how{margin:0 0 44px}.how h2{margin:0 0 16px;font-style:italic;font-size:23px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{padding:20px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.step b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--grad);margin-bottom:12px}
+.step h4{margin:0 0 4px;font-size:16px}.step p{margin:0;color:var(--muted);font-size:14px}
+.page{margin-bottom:48px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--panel);display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h3{margin:0;font-size:18px}
+.panel label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+.panel input{padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#080e20;color:var(--text);font:400 15px Poppins,sans-serif}
+.panel input:focus{outline:2px solid var(--accent);border-color:transparent}
+.panel small{color:var(--muted)}
+.panel .buy{margin-top:4px}
+.benefits,.ct2{list-style:none;margin:0;padding:0;display:grid;gap:12px;color:#cdd7ee;font-size:15px}
+.benefits li,.ct2 li{display:flex;align-items:center;gap:12px}
+.benefits .ic{width:24px;height:24px;padding:5px;border-radius:50%;background:#1b3a8a;stroke-width:3;color:#cfe0ff}
+.ct2 .ic{color:#6f95dc}.panel .wa{align-self:flex-start;margin-top:6px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:#0a1124}
+.faq summary{cursor:pointer;padding:14px 16px;font-weight:500;font-size:15px}
+.faq details[open] summary{color:#9cbcf0}
+.faq details p{margin:0;padding:0 16px 14px;color:var(--muted);font-size:14px}
+@media(max-width:760px){.steps,.two{grid-template-columns:1fr}.panel{padding:18px}}
