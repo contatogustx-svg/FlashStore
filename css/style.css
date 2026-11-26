@@ -379,3 +379,9 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 @media(min-width:761px){.quick{grid-template-columns:repeat(2,minmax(0,240px));justify-content:center}}
 @media(max-width:760px){.showcase{padding-top:10px}.car{border-radius:16px}.car-nav{display:none}.qbtn{padding:13px 10px;font-size:15px}}
 @media(prefers-reduced-motion:reduce){.slide,.slide.on{transition:none}}
+
+/* áreas clicáveis em cima dos botões desenhados nos banners */
+.hot{position:absolute;z-index:1;border-radius:14px;cursor:pointer;transition:box-shadow .2s,background .2s}
+.hot::after{content:"";position:absolute;inset:-8px}
+.hot:hover{background:#ffffff1f;box-shadow:0 0 0 2px #ffffffcc,0 0 22px #3fe27caa}
+.hot:focus-visible{outline:3px solid #fff;outline-offset:2px}
