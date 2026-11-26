@@ -19,6 +19,15 @@
     prime_sem: { c: '#00a8e1', t: 'P' }, prime_com: { c: '#00a8e1', t: 'P' }, hbo_tela: { c: '#7b2cff', t: 'H' }, hbo_conta: { c: '#7b2cff', t: 'H' },
     vivo: { c: '#6a2cb8', t: 'V' }, claro: { c: '#c4242e', t: 'C' }, tim: { c: '#24449a', t: 'T' }, oi: { c: '#22903a', t: 'oi' }
   };
+  /* logo mostrada no carrinho para cada produto */
+  var LOGO = {
+    netflix_tela: ['img/netflix.png', 'netflix'], netflix_conta: ['img/netflix.png', 'netflix'],
+    disney_tela: ['img/logodisney.png', 'disney'], disney_conta: ['img/logodisney.png', 'disney'],
+    prime_sem: ['img/primevideo.png', 'prime'], prime_com: ['img/primevideo.png', 'prime'],
+    hbo_tela: ['img/hbomax.png', 'hbo'], hbo_conta: ['img/hbomax.png', 'hbo'],
+    spotify: ['img/spotify.svg', 'spotify'], paramount: ['img/paramount-plus-logo.svg', 'paramount']
+  };
+  var WORD = { vivo: 'vivo', claro: 'Claro', tim: 'TIM', oi: 'oi' };
   var $ = function (id) { return document.getElementById(id); };
   var brl = function (v) { return 'R$ ' + v.toFixed(2).replace('.', ','); };
   var total = function () { return cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0); };
@@ -42,11 +51,22 @@
       var parts = String(it.name).split(' – ');
       var li = document.createElement('li');
       li.className = 'item';
-      var tile = document.createElement('span'); tile.className = 'tile'; tile.style.setProperty('--c', br.c); tile.textContent = br.t;
+      var tile = document.createElement('span'); tile.className = 'tile'; tile.style.setProperty('--c', br.c);
+      var lg = LOGO[it.id];
+      if (lg) {
+        tile.classList.add('logo'); tile.dataset.logo = lg[1];
+        var im = document.createElement('img'); im.src = lg[0]; im.alt = ''; im.decoding = 'async'; tile.appendChild(im);
+      } else {
+        tile.classList.add('word', 'w-' + it.id); tile.textContent = WORD[it.id] || br.t;
+      }
+      li.style.setProperty('--c', br.c);
       var info = document.createElement('div'); info.className = 'info';
       var name = document.createElement('b'); name.textContent = parts[0];
       var kind = document.createElement('small');
-      kind.textContent = it.value ? 'Recarga de ' + brl(it.price) : (it.kind || 'Assinatura mensal') + (it.qty > 1 ? ' · ' + brl(it.price) + ' cada' : '');
+      var chip = document.createElement('span'); chip.className = 'chip';
+      chip.textContent = it.value ? 'Recarga de ' + brl(it.price) : (it.kind || 'Assinatura mensal');
+      kind.appendChild(chip);
+      if (it.qty > 1) { var each = document.createElement('em'); each.textContent = brl(it.price) + ' cada'; kind.appendChild(each); }
       info.append(name, kind);
       var pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = brl(it.price * it.qty);
       var q = document.createElement('div'); q.className = 'qty';
