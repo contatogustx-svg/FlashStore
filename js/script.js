@@ -14,7 +14,7 @@
   var curView = 'cart';
   var BRAND = {
     netflix: { c: '#e50914', t: 'N' }, disney: { c: '#2f6bff', t: 'D+' }, hbomax: { c: '#7b2cff', t: 'H' },
-    spotify: { c: '#1ed760', t: 'S' }, dazn: { c: '#ff6a1a', t: 'D' }, paramount: { c: '#2a8bff', t: 'P+' },
+    spotify: { c: '#1ed760', t: 'S' }, paramount: { c: '#2a8bff', t: 'P+' },
     netflix_tela: { c: '#e50914', t: 'N' }, netflix_conta: { c: '#e50914', t: 'N' }, disney_tela: { c: '#2f6bff', t: 'D+' }, disney_conta: { c: '#2f6bff', t: 'D+' },
     prime_sem: { c: '#00a8e1', t: 'P' }, prime_com: { c: '#00a8e1', t: 'P' }, hbo_tela: { c: '#7b2cff', t: 'H' }, hbo_conta: { c: '#7b2cff', t: 'H' },
     vivo: { c: '#6a2cb8', t: 'V' }, claro: { c: '#c4242e', t: 'C' }, tim: { c: '#24449a', t: 'T' }, oi: { c: '#22903a', t: 'oi' }
@@ -320,13 +320,12 @@
   var grid = hero && hero.querySelector('.hero-grid');
   if (!grid) return;
   var DATA = [
-    { id: 'netflix_tela', a: 'Netflix',   b: '4K',      sub: 'por um preço imperdível!',        logo: 'Netflix', img: 'img/logos/netflix.png', price: 'R$ 9,88', c: '#c8101c', li: ['Filmes e séries de lançamentos', 'Qualidade 4K Ultra HD', 'Acesso em todos os dispositivos'] },
-    { id: 'disney_tela', a: 'Disney',    b: 'Plus',    sub: 'diversão para toda a família!',    logo: 'Disney+', img: 'img/logos/disney.png', price: 'R$ 8,79', c: '#3b7bff', li: ['Disney, Pixar, Marvel e Star Wars', 'Filmes e séries para todas as idades', 'Acesso em todos os dispositivos'] },
-    { id: 'prime_com', a: 'Prime',     b: 'Vídeo',   sub: 'filmes e séries para maratonar!',   logo: 'Prime Video', img: 'img/logos/prime.png', price: 'R$ 4,68', c: '#2db8ee', li: ['Filmes, séries e Originais Prime', 'Opção sem anúncios disponível', 'Acesso em todos os dispositivos'] },
-    { id: 'hbo_tela', a: 'HBO',       b: 'Max',     sub: 'séries e filmes de tirar o fôlego!', logo: 'HBO Max', img: 'img/logos/hbo.png', price: 'R$ 6,68', c: '#8a4dff', li: ['Séries originais e lançamentos', 'Filmes e documentários', 'Acesso em todos os dispositivos'] },
-    { id: 'spotify',   a: 'Spotify',   b: 'Premium', sub: 'sua música, sem interrupções!',    logo: 'Spotify', img: 'img/logos/spotify.png', price: 'R$ 16,90', c: '#1ed760', li: ['Músicas sem anúncios', 'Ouça offline, onde quiser', 'Acesso em todos os dispositivos'] },
-    { id: 'dazn',      a: 'Dazze',     b: 'Esporte', sub: 'o esporte que você ama!',          logo: 'Dazze', img: 'img/logos/dazze.png', price: 'R$ 19,90', c: '#ff7a2e', li: ['Esportes ao vivo e sob demanda', 'Lutas, futebol e muito mais', 'Acesso em todos os dispositivos'] },
-    { id: 'paramount', a: 'Paramount', b: 'Plus',    sub: 'filmes e séries para maratonar!',  logo: 'Paramount+', img: 'img/logos/paramount.png', price: 'R$ 27,90', c: '#4a9bff', li: ['Filmes, séries e lançamentos', 'Conteúdo para toda a família', 'Acesso em todos os dispositivos'] }
+    { id: 'netflix_tela', a: 'Netflix',   b: '4K',      sub: 'por um preço imperdível!',        logo: 'Netflix', img: 'img/netflix.png', price: 'R$ 9,88', c: '#c8101c', li: ['Filmes e séries de lançamentos', 'Qualidade 4K Ultra HD', 'Acesso em todos os dispositivos'] },
+    { id: 'disney_tela', a: 'Disney',    b: 'Plus',    sub: 'diversão para toda a família!',    logo: 'Disney+', img: 'img/logodisney.png', price: 'R$ 8,79', c: '#3b7bff', li: ['Disney, Pixar, Marvel e Star Wars', 'Filmes e séries para todas as idades', 'Acesso em todos os dispositivos'] },
+    { id: 'prime_com', a: 'Prime',     b: 'Vídeo',   sub: 'filmes e séries para maratonar!',   logo: 'Prime Video', img: 'img/primevideo.png', price: 'R$ 4,68', c: '#2db8ee', li: ['Filmes, séries e Originais Prime', 'Opção sem anúncios disponível', 'Acesso em todos os dispositivos'] },
+    { id: 'hbo_tela', a: 'HBO',       b: 'Max',     sub: 'séries e filmes de tirar o fôlego!', logo: 'HBO Max', img: 'img/hbomax.png', price: 'R$ 6,68', c: '#8a4dff', li: ['Séries originais e lançamentos', 'Filmes e documentários', 'Acesso em todos os dispositivos'] },
+    { id: 'spotify',   a: 'Spotify',   b: 'Premium', sub: 'sua música, sem interrupções!',    logo: 'Spotify', img: 'img/spotify.svg', price: 'R$ 16,90', c: '#1ed760', li: ['Músicas sem anúncios', 'Ouça offline, onde quiser', 'Acesso em todos os dispositivos'] },
+    { id: 'paramount', a: 'Paramount', b: 'Plus',    sub: 'filmes e séries para maratonar!',  logo: 'Paramount+', img: 'img/paramount-plus-logo.svg', price: 'R$ 27,90', c: '#4a9bff', li: ['Filmes, séries e lançamentos', 'Conteúdo para toda a família', 'Acesso em todos os dispositivos'] }
   ];
   var title = document.getElementById('heroTitle'), sub = document.getElementById('heroSub'), list = document.getElementById('heroChecks');
   var price = document.getElementById('heroPrice'), logo = document.getElementById('heroLogo'), img = document.getElementById('heroImg');
