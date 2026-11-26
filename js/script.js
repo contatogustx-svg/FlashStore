@@ -277,9 +277,9 @@
       var box = g.parentNode.querySelector('.price-box');
       if (!box || !b.dataset.p) return;
       var v = Number(b.dataset.v), p = Number(b.dataset.p);
-      box.querySelector('.pb-p b').textContent = money(p);
-      box.querySelector('.pb-p s').textContent = money(v);
-      box.querySelector('.pb-t em').textContent = Math.round((v - p) / v * 100) + '% OFF';
+      box.querySelector('.pb-main b').textContent = money(p);
+      box.querySelector('.pb-side s').textContent = money(v);
+      box.querySelector('.pb-side em').textContent = Math.round((v - p) / v * 100) + '% OFF';
       box.classList.remove('pop'); void box.offsetWidth; box.classList.add('pop');
     });
   });
