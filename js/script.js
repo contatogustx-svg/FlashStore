@@ -267,8 +267,7 @@
 /* carrossel de banners (troca sozinho) e botão do grupo */
 (function () {
   var CFG = window.GUSTX || {};
-  var g = document.getElementById('btnGrupo');
-  if (g && CFG.grupo) { g.href = CFG.grupo; g.target = '_blank'; g.rel = 'noopener'; g.removeAttribute('data-soon'); }
+  if (CFG.grupo) document.querySelectorAll('[data-grupo]').forEach(function (g) { g.href = CFG.grupo; g.target = '_blank'; g.rel = 'noopener'; g.removeAttribute('data-soon'); });
 
   var car = document.getElementById('car');
   if (!car) return;
