@@ -695,9 +695,12 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 }
 @media(prefers-reduced-motion:reduce){.cats a,.cats .bub{transition:none}}
 
-/* ===== Logo do Pix (img/pixdalogo.png, 1024x1024) ===== */
-.pixlogo{width:20px;height:20px;object-fit:contain;flex:none;display:block}
-.pay .pixb{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px}
-.pay .pixb b{font-weight:600}
-.sum .pixl{display:inline-flex;align-items:center;gap:8px}
-.sum .pixl .pixlogo{width:22px;height:22px}
+/* ===== Logo do Pix (img/pixdalogo.png, 1024x1024 com margem) ===== */
+/* O PNG tem bastante espaço vazio em volta; o recorte abaixo mostra só a logo. */
+.pixmark{display:block;position:relative;width:104px;aspect-ratio:905/320;overflow:hidden}
+.pixmark img{display:block;width:113.15%;max-width:none;height:auto;margin:-38.9% 0 0 -6.85%}
+.pay .pixbadge{display:inline-flex;align-items:center;padding:8px 12px;border:0;border-radius:10px;background:#fff}
+.pix-top{display:flex;justify-content:center;margin:0 0 14px}
+.pix-top .pixbadge{display:inline-flex;padding:9px 16px;border-radius:12px;background:#fff}
+.pix-top .pixmark{width:120px}
+.pay .pixmark{padding:0;border:0;border-radius:0;background:none}
