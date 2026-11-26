@@ -124,3 +124,21 @@ footer .ct li{display:flex;align-items:center;gap:10px}footer .ct .ic{color:#6f9
 .fgrid{grid-template-columns:1fr 1fr}.nav{flex-wrap:wrap}nav{order:3;width:100%;margin:0}}
 @media(max-width:560px){.g6{grid-template-columns:repeat(2,1fr)}.cart .lbl{display:none}.sec .all{display:none}.card .top{font-size:27px}.fgrid{grid-template-columns:1fr}.help-in{text-align:center;justify-content:center}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ajustes responsivos extras */
+body{overflow-x:clip}
+.hero-grid>*,.grid>*,.cats>*,.trust>*,.fgrid>*{min-width:0}
+img,svg{max-width:100%}
+@media(max-width:560px){
+.wrap{padding:0 14px}.nav{padding:8px 14px;gap:10px}.logo{font-size:24px}.logo .crown{width:30px;height:30px}
+.hero{padding:30px 0 26px}.cta{font-size:14px;padding:13px 16px}.stage{height:260px}.poster{width:110px;height:155px}
+.chip{font-size:11px;padding:7px 11px}
+.cats{grid-template-columns:repeat(2,1fr);padding:10px}.cats a{flex-direction:row;text-align:left;gap:12px;padding:10px}
+.cats .bub{width:44px;height:44px;font-size:21px}
+.trust{grid-template-columns:1fr 1fr}.trust div{padding:14px 12px;gap:10px}.trust p{font-size:13px}.trust .bub{width:40px;height:40px;font-size:20px}
+.sec h2{font-size:20px}.sec p{font-size:13px}
+.g4{gap:10px}.g6{gap:10px}.card .body{padding:4px 10px 14px}
+.help h3{font-size:19px}.wfloat{width:50px;height:50px;font-size:26px}
+.fbot-in{flex-direction:column;text-align:center}}
+@media(max-width:360px){.g4,.g6{grid-template-columns:1fr}.cats{grid-template-columns:1fr}}
+@media(max-width:1000px){.cart{margin-left:auto}}
