@@ -8,6 +8,12 @@
   var drawer = document.getElementById('drawer');
   var overlay = document.getElementById('overlay');
   var timer;
+  var curView = 'cart';
+  var BRAND = {
+    netflix: { c: '#e50914', t: 'N' }, disney: { c: '#2f6bff', t: 'D+' }, hbomax: { c: '#7b2cff', t: 'H' },
+    spotify: { c: '#1ed760', t: 'S' }, dazn: { c: '#ff6a1a', t: 'D' }, paramount: { c: '#2a8bff', t: 'P+' },
+    vivo: { c: '#6a2cb8', t: 'V' }, claro: { c: '#c4242e', t: 'C' }, tim: { c: '#24449a', t: 'T' }, oi: { c: '#22903a', t: 'oi' }
+  };
   var $ = function (id) { return document.getElementById(id); };
   var brl = function (v) { return 'R$ ' + v.toFixed(2).replace('.', ','); };
   var total = function () { return cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0); };
@@ -27,32 +33,53 @@
     var list = $('itemsList');
     list.innerHTML = '';
     cart.forEach(function (it, idx) {
+      var br = BRAND[it.id] || { c: '#2c5fd0', t: (it.name || '?').charAt(0) };
+      var parts = String(it.name).split(' – ');
       var li = document.createElement('li');
       li.className = 'item';
-      var name = document.createElement('b'); name.textContent = it.name;
+      var tile = document.createElement('span'); tile.className = 'tile'; tile.style.setProperty('--c', br.c); tile.textContent = br.t;
+      var info = document.createElement('div'); info.className = 'info';
+      var name = document.createElement('b'); name.textContent = parts[0];
+      var kind = document.createElement('small');
+      kind.textContent = it.value ? 'Recarga de ' + brl(it.price) : 'Assinatura mensal' + (it.qty > 1 ? ' · ' + brl(it.price) + ' cada' : '');
+      info.append(name, kind);
       var pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = brl(it.price * it.qty);
       var q = document.createElement('div'); q.className = 'qty';
-      var minus = document.createElement('button'); minus.textContent = '−'; minus.setAttribute('aria-label', 'Diminuir');
+      var minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', 'Diminuir quantidade');
       var num = document.createElement('span'); num.textContent = it.qty;
-      var plus = document.createElement('button'); plus.textContent = '+'; plus.setAttribute('aria-label', 'Aumentar');
-      var rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = 'Remover';
+      var plus = document.createElement('button'); plus.type = 'button'; plus.textContent = '+'; plus.setAttribute('aria-label', 'Aumentar quantidade');
+      var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'rm'; rm.setAttribute('aria-label', 'Remover ' + parts[0]);
+      rm.innerHTML = '<svg class="ic"><use href="#i-trash"/></svg>';
       minus.onclick = function () { it.qty = Math.max(1, it.qty - 1); save(); render(); };
-      plus.onclick = function () { it.qty += 1; save(); render(); };
+      plus.onclick = function () { it.qty = Math.min(10, it.qty + 1); save(); render(); };
       rm.onclick = function () { cart.splice(idx, 1); save(); render(); };
       q.append(minus, num, plus);
-      li.append(name, pr, q, rm);
+      li.append(tile, info, pr, q, rm);
       list.appendChild(li);
     });
+    drawer.toggleAttribute('data-empty', cart.length === 0);
+    if (curView === 'cart') $('drawerSub').textContent = n === 0 ? 'Nenhum item' : n + (n === 1 ? ' item' : ' itens');
     $('emptyMsg').hidden = cart.length > 0;
     $('toCheckout').disabled = cart.length === 0;
     var t = brl(total());
     $('totalCart').textContent = t; $('totalForm').textContent = t; $('totalPix').textContent = t;
   }
 
+  var SUBS = { form: 'Informe seus dados para receber o pedido', pix: 'Pague pelo app do seu banco', done: 'Tudo certo!' };
+  var TITLES = { cart: 'Meu carrinho', form: 'Seus dados', pix: 'Pagamento via Pix', done: 'Pedido' };
   function view(name) {
+    curView = name;
     $('viewCart').hidden = name !== 'cart'; $('footCart').hidden = name !== 'cart'; if (name !== 'pix') stopPolling();
     $('viewForm').hidden = name !== 'form'; $('viewPix').hidden = name !== 'pix'; $('viewDone').hidden = name !== 'done';
-    $('drawerTitle').textContent = name === 'cart' ? 'Meu carrinho' : name === 'done' ? 'Pedido' : 'Pagamento via Pix';
+    $('drawerTitle').textContent = TITLES[name];
+    var n = cart.reduce(function (s, i) { return s + i.qty; }, 0);
+    $('drawerSub').textContent = name === 'cart' ? (n === 0 ? 'Nenhum item' : n + (n === 1 ? ' item' : ' itens')) : SUBS[name];
+    var order = ['cart', 'form', 'pix', 'done'], at = order.indexOf(name);
+    drawer.dataset.step = name;
+    drawer.querySelectorAll('.stp li').forEach(function (li) {
+      var k = order.indexOf(li.dataset.s);
+      li.classList.toggle('on', k === at); li.classList.toggle('past', k < at);
+    });
   }
   function openDrawer() {
     view('cart'); overlay.hidden = false; drawer.classList.add('open');
