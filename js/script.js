@@ -64,7 +64,7 @@
       var name = document.createElement('b'); name.textContent = parts[0];
       var kind = document.createElement('small');
       var chip = document.createElement('span'); chip.className = 'chip';
-      chip.textContent = it.value ? 'Recarga de ' + brl(it.price) : (it.kind || 'Assinatura mensal');
+      chip.textContent = it.value ? 'Recarga de ' + brl(it.value) : (it.kind || 'Assinatura mensal');
       kind.appendChild(chip);
       if (it.qty > 1) { var each = document.createElement('em'); each.textContent = brl(it.price) + ' cada'; kind.appendChild(each); }
       info.append(name, kind);
@@ -128,10 +128,10 @@
       var src = btn.hasAttribute('data-multi') ? card.querySelector('.opt.on') : btn;
       if (!src) return;
       var chip = card && card.querySelector('.amt.on');
-      var price = chip ? parseFloat(chip.dataset.v) : parseFloat(src.dataset.price);
+      var price = chip ? parseFloat(chip.dataset.p) : parseFloat(src.dataset.price);
       var name = src.dataset.item + (chip ? ' – R$ ' + chip.dataset.v : '');
       var found = cart.filter(function (i) { return i.id === src.dataset.id && i.name === name; })[0];
-      if (found) found.qty += 1; else cart.push({ id: src.dataset.id, value: chip ? price : null, name: name, kind: src.dataset.kind || '', price: price, qty: 1 });
+      if (found) found.qty += 1; else cart.push({ id: src.dataset.id, value: chip ? parseFloat(chip.dataset.v) : null, name: name, kind: src.dataset.kind || '', price: price, qty: 1 });
       save(); render();
       cartBtn.classList.remove('bump'); void cartBtn.offsetWidth; cartBtn.classList.add('bump');
       openDrawer();
@@ -273,6 +273,8 @@
       if (!b) return;
       g.querySelectorAll('.amt').forEach(function (x) { x.classList.remove('on'); });
       b.classList.add('on');
+      var pay = g.parentNode.querySelector('.pay b');
+      if (pay && b.dataset.p) pay.textContent = 'R$ ' + Number(b.dataset.p).toFixed(2).replace('.', ',');
     });
   });
 
