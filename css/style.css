@@ -240,3 +240,52 @@ html.js .reveal.in{opacity:1;animation:rise .55s ease var(--d,0ms) backwards}
 .cats a{padding:14px 12px}.help h3{font-size:21px}}
 @media(prefers-reduced-motion:reduce){html.js .reveal{opacity:1}}
 @media(max-width:1000px){.hero-grid{grid-template-columns:1fr}.hero>.wrap{width:auto}}
+
+
+/* ===== carrinho e pagamento Pix ===== */
+[hidden]{display:none!important}
+body.lock{overflow:hidden}
+.toast{z-index:70}
+.overlay{position:fixed;inset:0;z-index:50;background:#02050dcc;backdrop-filter:blur(3px)}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:60;width:min(430px,100%);display:flex;flex-direction:column;background:var(--panel);border-left:1px solid var(--line);box-shadow:-20px 0 50px #000a;transform:translateX(105%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none;visibility:visible;transition:transform .3s ease}
+.d-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.d-head h2{margin:0;font-size:19px}
+.d-x{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:#0b1330;color:var(--text);font-size:24px;line-height:1;cursor:pointer}
+.d-x:hover{border-color:var(--accent)}
+.d-body{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column}
+.d-body>div,.d-body>form{display:flex;flex-direction:column;gap:14px}
+.d-body label{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+.d-body input,.d-body textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#080e20;color:var(--text);font:400 15px Poppins,sans-serif}
+.d-body textarea{resize:none;font-size:12px;word-break:break-all}
+.d-body input:focus,.d-body textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+.d-body .buy{margin-top:0}
+.buy:disabled{opacity:.5;cursor:not-allowed;filter:none}
+.empty{margin:30px 0;text-align:center;color:var(--muted);font-size:14px}
+.items{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.item{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:14px;background:#0a1124}
+.item b{font-size:14px}
+.item .pr{font-weight:600;color:#9cc0f0;font-size:14px}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#0b1330;color:var(--text);font-size:16px;cursor:pointer}
+.qty button:hover{border-color:var(--accent)}
+.item .rm{grid-column:2;grid-row:2;justify-self:end;width:auto;height:auto;padding:4px 0;border:0;background:none;color:#e07a7a;font:500 12px Poppins,sans-serif;cursor:pointer}
+.d-foot{padding:16px 20px;border-top:1px solid var(--line);display:grid;gap:12px;background:#0a1124}
+.d-total{margin:0;display:flex;align-items:baseline;justify-content:space-between;font-size:14px;color:var(--muted)}
+.d-total b{font-size:22px;color:var(--text)}
+.back{border:0;background:none;color:var(--muted);font:500 13px Poppins,sans-serif;cursor:pointer;padding:6px}
+.back:hover{color:var(--text)}
+.form-err{margin:0;padding:10px 12px;border-radius:10px;background:#3a1620;border:1px solid #7a2a3a;color:#ffb3bf;font-size:13px}
+.qr{width:220px;max-width:100%;margin:0 auto;padding:12px;border-radius:14px;background:#fff;color:#111;font-size:13px;text-align:center}
+.qr svg{display:block;width:100%;height:auto}
+.status{margin:0;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;font-size:13px;border:1px solid var(--line);background:#0a1124}
+.status .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);animation:pulse 1.2s infinite}
+.status.bad{border-color:#7a2a3a;background:#3a1620;color:#ffb3bf}
+.status.bad .dot{background:#e5566f;animation:none}
+@keyframes pulse{50%{opacity:.3}}
+.done{align-items:center;text-align:center;padding-top:30px}
+.done h3{margin:0;font-size:20px}
+.done p{margin:0;color:var(--muted);font-size:14px}
+.done .ok{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:#103a28;border:1px solid #1f7a4f;color:#4ade9a;font-size:32px}
+.done .buy{width:100%}
+@media(prefers-reduced-motion:reduce){.drawer{transition:none}.status .dot{animation:none}}
