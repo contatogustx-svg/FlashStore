@@ -55,6 +55,10 @@ body[data-page="login"] .auth-shell{align-items:center;padding-top:14px}
 .lg[data-l=hbo] img{height:calc(48px*var(--k))}
 .lg[data-l=spotify] img{height:calc(28px*var(--k))}
 .lg[data-l=paramount] img{width:calc(84px*var(--k));height:calc(84px*var(--k));max-width:none}
+.lg[data-l=vivo] img{height:calc(28px*var(--k))}
+.lg[data-l=claro] img{height:calc(46px*var(--k))}
+.lg[data-l=tim] img{height:calc(24px*var(--k))}
+.lg[data-l=vivo],.lg[data-l=claro],.lg[data-l=tim]{color:#fff;font-weight:800}
 .rech{display:flex;flex-wrap:wrap;gap:10px}
 .rc{display:inline-flex;align-items:center;justify-content:center;min-width:84px;padding:9px 18px;border-radius:14px;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 70%,#fff));font-size:15px;font-weight:800;font-style:italic;letter-spacing:-.2px;color:#fff;box-shadow:0 8px 20px color-mix(in srgb,var(--c) 40%,transparent);transition:transform .25s}
 .rc:hover{transform:translateY(-3px)}
