@@ -988,3 +988,13 @@ nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
 .grp-btn{grid-column:1/-1;grid-row:4;justify-content:center}
 }
 @media(prefers-reduced-motion:reduce){.grp-in::after{animation:none}}
+
+/* ===== logo em imagem (header, rodapé, login e cadastro) ===== */
+.logo.has-img{display:block;flex:none;line-height:0;font-size:0}
+.logo.has-img::before{display:none}
+.logo-img{display:block;width:auto;height:58px;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 14px #3d8bff55);transition:transform .25s ease,filter .25s ease}
+.logo.has-img:hover .logo-img{transform:scale(1.04);filter:drop-shadow(0 0 20px #4fc3ffaa)}
+header .logo.has-img{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) both}
+.fbrand .logo-img{height:84px}
+@media(max-width:760px){.logo-img{height:46px}.fbrand .logo-img{height:68px}}
+@media(prefers-reduced-motion:reduce){header .logo.has-img{animation:none!important}.logo-img{transition:none}}
