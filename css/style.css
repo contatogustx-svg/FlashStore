@@ -776,3 +776,52 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 .site-bg .a4{width:300px;height:300px;right:12%;top:-120px;background:#d62a6a;opacity:.18;animation-delay:-3s}
 @media(max-width:700px){.site-bg i{filter:blur(70px);animation:none}.site-bg .a1{width:300px;height:300px;left:-120px}.site-bg .a2{width:280px;height:280px;right:-110px}.site-bg .a3{width:260px;height:260px}.site-bg .a4{display:none}}
 @media(prefers-reduced-motion:reduce){.site-bg i{animation:none}}
+
+/* ===== Menu superior e categorias (versão computador) ===== */
+.cats .mini,.cats .go{display:none}
+@media(min-width:761px){
+.nav{gap:22px;padding:9px 12px 9px 18px}
+nav{gap:3px;padding:5px;border:1px solid #ffffff14;border-radius:17px;background:linear-gradient(180deg,#ffffff0b,#ffffff03);box-shadow:inset 0 1px 0 #ffffff12}
+nav a{gap:9px;padding:10px 17px;border-radius:13px;font-size:14px;font-weight:500;letter-spacing:.1px;color:#9fb0d8}
+nav a .ic{width:21px;height:21px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+nav a:hover{color:#fff;background:#ffffff10;border-color:transparent}
+nav a:hover .ic{transform:translateY(-2px) scale(1.12)}
+nav a.on{font-weight:600;background:linear-gradient(135deg,#2a58c8,#4f86ec);border-color:#a9c6ff55;box-shadow:0 6px 18px #2c5fd080,inset 0 1px 0 #ffffff55}
+nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
+.cart{gap:10px;padding:6px 18px 6px 6px;border-radius:15px;font-weight:600;font-size:14px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.cart .ic{box-sizing:content-box;width:20px;height:20px;padding:8px;border-radius:11px;color:#fff;background:linear-gradient(135deg,#2a58c8,#4fc3ff);box-shadow:0 6px 14px #2c8bff55,inset 0 1px 0 #ffffff66}
+.cart:hover{transform:translateY(-2px)}
+.cart i{top:-9px;right:-9px;min-width:22px;height:22px;font-size:11.5px;border:2px solid #0a1230;box-sizing:border-box;box-shadow:0 4px 12px #d6403f88}
+}
+
+/* cartões de categoria */
+@media(min-width:1001px){
+.cats{grid-template-columns:repeat(4,1fr);gap:16px}
+.cats a{flex-direction:row;align-items:center;text-align:left;gap:16px;padding:20px 20px;border-radius:22px}
+.cats .bub{flex:none;width:56px;height:56px;border-radius:17px;font-size:27px}
+.cats .ct b{font-size:15px}
+.cats .ct small{font-size:12px;line-height:1.4}
+.cats .tag{top:auto;bottom:12px;right:12px}
+.cats a.feat{grid-column:span 2;gap:22px;padding:28px 30px;border-radius:26px;background:radial-gradient(90% 140% at 0 0,color-mix(in srgb,var(--c) 30%,transparent),transparent 62%),radial-gradient(60% 100% at 100% 100%,color-mix(in srgb,var(--c) 14%,transparent),transparent 70%),linear-gradient(160deg,#101a3e,#0a1124)}
+.cats a.feat::before{left:8%;right:8%;opacity:.9}
+.cats a.feat .bub{width:88px;height:88px;border-radius:26px;font-size:44px;box-shadow:inset 0 2px 0 #ffffff66,0 0 0 1px #ffffff22,0 16px 34px color-mix(in srgb,var(--c) 55%,transparent)}
+.cats a.feat .bub .ic{stroke-width:1.5}
+.cats a.feat .ct{gap:6px}
+.cats a.feat .ct b{font-size:22px;letter-spacing:-.2px}
+.cats a.feat .ct small{display:none}
+.cats a.feat .mini{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;margin-top:6px}
+.cats a.feat .mini i{display:grid;place-items:center;height:32px;min-width:46px;padding:0 9px;border-radius:10px;background:#ffffff0e;border:1px solid #ffffff1c;box-shadow:inset 0 1px 0 #ffffff14;transition:transform .3s,background .3s}
+.cats a.feat .mini img{display:block;width:auto;height:16px;max-width:46px;object-fit:contain;filter:drop-shadow(0 1px 4px #0008)}
+.cats a.feat .mini i:nth-child(1) img[src*="vivo"]{height:15px}
+.cats a.feat .mini img[src*="claro"]{height:24px}
+.cats a.feat .mini img[src*="logodisney"]{height:22px}
+.cats a.feat .mini img[src*="hbomax"]{height:24px}
+.cats a.feat .mini img[src*="netflix"]{height:13px}
+.cats a.feat .mini img[src*="primevideo"]{height:15px}
+.cats a.feat .mini img[src*="spotify"]{height:15px}
+.cats a.feat:hover .mini i{background:#ffffff18;transform:translateY(-2px)}
+.cats a.feat .go{display:grid;place-items:center;flex:none;width:44px;height:44px;margin-left:auto;border-radius:50%;border:1px solid #ffffff26;background:#ffffff0d;color:#dbe7ff;font-size:18px;transition:transform .3s,background .3s,border-color .3s}
+.cats a.feat:hover .go{background:var(--c);border-color:transparent;color:#fff;transform:translateX(4px)}
+.cats a:not(.feat):hover{transform:translateY(-4px)}
+}
+@media(min-width:1001px) and (prefers-reduced-motion:reduce){.cats a.feat .mini i,.cats a.feat .go{transition:none}}
