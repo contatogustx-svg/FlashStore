@@ -8,8 +8,9 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27%3E%3Cstop offset=%270%27 stop-color=%27%232a58c8%27/%3E%3Cstop offset=%271%27 stop-color=%27%234fc3ff%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27url(%23g)%27/%3E%3Cpath d=%27M36 8L16 36h13l-3 20 22-30H35z%27 fill=%27white%27/%3E%3C/svg%3E">
 <script>document.documentElement.className="js"</script>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
 </head>
-<body>
+<body data-page="site">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3.200"/><path d="M10.200 4.800h3.600"/><path d="M12.900 8.200l-3.200 4.600h2.500l-1 3.800 3.400-5h-2.500z" fill="currentColor" stroke-width="1"/><path d="M10.500 19.400h3"/><path d="M20.500 8.500a5 5 0 010 7M22.500 6.500a8 8 0 010 11" opacity=".55"/></symbol>
@@ -133,15 +134,27 @@
 </section>
 
 <section class="page" id="conta" data-tabs="conta">
-<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-user"/></svg></span><div><h2>Minha Conta</h2><p>Entre para acompanhar seus pedidos.</p></div></div></div>
+<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-user"/></svg></span><div><h2>Minha Conta</h2><p>Entre ou crie sua conta para pagar com Pix e acompanhar seus pedidos.</p></div></div></div>
 <div class="two">
-<form class="panel" id="loginForm">
-<h3>Entrar</h3>
-<label>E-mail<input type="email" placeholder="voce@email.com" required></label>
-<label>Senha<input type="password" placeholder="Sua senha" required></label>
-<button class="buy" type="submit">Entrar</button>
-<small>Ainda não tem conta? O cadastro estará disponível em breve.</small>
-</form>
+<div class="panel" id="accGuest">
+<h3>Entrar ou criar conta</h3>
+<p class="acc-txt">Você pode navegar e montar o carrinho sem conta. Para gerar o Pix, é preciso ter uma conta com o e-mail confirmado.</p>
+<a class="buy" id="goLogin" href="login.html">Entrar</a>
+<a class="ghost acc-btn" id="goReg" href="register.html">Criar conta</a>
+</div>
+<div class="panel" id="accUser" hidden>
+<h3>Olá, <span id="accName">Cliente</span></h3>
+<ul class="ct2 acc-list">
+<li><svg class="ic"><use href="#i-mail"/></svg><span id="accMail"></span></li>
+<li><svg class="ic fill"><use href="#i-wa"/></svg><span id="accPhone"></span></li>
+<li><svg class="ic"><use href="#i-shield"/></svg><span class="acc-badge wait" id="accStatus">E-mail confirmado</span></li>
+</ul>
+<div class="acc-verify" id="accVerifyRow" hidden>
+<p class="acc-txt">Confirme seu e-mail para poder gerar o Pix. Enviamos um link para a sua caixa de entrada.</p>
+<div class="acc-row"><button class="ghost acc-btn" id="accResend" type="button">Reenviar e-mail</button><button class="ghost acc-btn" id="accRefresh" type="button">Já confirmei</button></div>
+</div>
+<button class="back" id="accLogout" type="button">Sair da conta</button>
+</div>
 <div class="panel">
 <h3>Vantagens da conta</h3>
 <ul class="benefits">
@@ -217,6 +230,20 @@
 <a class="cm-link" id="cmLink" href="#recargas" data-close hidden><span>+</span>Continuar comprando</a>
 <ul class="perks" id="perks" hidden><li><svg class="ic"><use href="#i-shield"/></svg><span>Compra segura</span></li><li><svg class="ic fill"><use href="#i-wa"/></svg><span>Entrega no WhatsApp</span></li><li><svg class="ic"><use href="#i-clock"/></svg><span>Suporte 8h às 22h</span></li></ul>
 </div>
+<div id="viewAuth" hidden>
+<div class="empty">
+<span class="empty-ic"><svg class="ic"><use href="#i-user"/></svg></span>
+<h3 id="authTitle">Entre para gerar o Pix</h3>
+<p id="authTxt">Seu carrinho fica guardado. Entre ou crie uma conta para continuar com o pagamento.</p>
+<div class="empty-act">
+<a class="cta" id="authLogin" href="login.html?next=index.html%3Fcheckout%3D1">Entrar</a>
+<a class="ghost" id="authReg" href="register.html?next=index.html%3Fcheckout%3D1">Criar conta</a>
+<button class="ghost" id="authResend" type="button" hidden>Reenviar e-mail de confirmação</button>
+<button class="ghost" id="authRefresh" type="button" hidden>Já confirmei meu e-mail</button>
+</div>
+</div>
+<button class="back" type="button" data-back="cart">Voltar ao carrinho</button>
+</div>
 <form id="viewForm" hidden novalidate>
 <div class="sum"><span>Total do pedido</span><b id="totalForm">R$ 0,00</b></div>
 <label for="fName">Seu nome<input id="fName" type="text" autocomplete="name" maxlength="80" placeholder="Como podemos te chamar?" required></label>
@@ -246,12 +273,13 @@
 <div class="d-save" id="saveRow" hidden><span><svg class="ic"><use href="#i-check"/></svg>Você economiza</span><b id="saveVal">R$ 0,00</b></div>
 <div class="sum"><span>Total</span><b id="totalCart">R$ 0,00</b></div>
 <button class="buy big" id="toCheckout" type="button" disabled>Ir para o pagamento<svg class="ic"><use href="#i-arrow"/></svg></button>
-<p class="safe"><svg class="ic"><use href="#i-shield"/></svg>Pagamento seguro via Pix</p>
+<p class="safe"><svg class="ic"><use href="#i-shield"/></svg>Pagamento seguro via Pix · conta necessária</p>
 </div>
 </aside>
 <div class="toast" id="toast" role="status"></div>
 <script src="js/config.js" defer></script>
 <script src="js/vendor/qrcode.js" defer></script>
 <script src="js/script.js" defer></script>
+<script type="module" src="js/auth.js"></script>
 </body>
 </html>
