@@ -355,6 +355,11 @@ function initSite() {
     if (!guest || !box) return;
     const u = state.user;
     guest.hidden = !!u; box.hidden = !u;
+    const why = $('accWhy'), quick = $('accQuick');
+    if (why) why.hidden = !!u;
+    if (quick) quick.hidden = !u;
+    const sub = $('accSub');
+    if (sub) sub.textContent = u ? 'Seus dados e atalhos para comprar mais rápido.' : 'Entre ou crie sua conta para pagar com Pix e acompanhar seus pedidos.';
     if (!u) return;
     const p = state.profile || {};
     const nm = p.name || u.displayName || 'Cliente';
