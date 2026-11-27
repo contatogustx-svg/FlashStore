@@ -25,7 +25,8 @@
     disney_tela: ['img/logodisney.png', 'disney'], disney_conta: ['img/logodisney.png', 'disney'],
     prime_sem: ['img/primevideo.png', 'prime'], prime_com: ['img/primevideo.png', 'prime'],
     hbo_tela: ['img/hbomax.png', 'hbo'], hbo_conta: ['img/hbomax.png', 'hbo'],
-    spotify: ['img/spotify.svg', 'spotify'], paramount: ['img/paramount-plus-logo.svg', 'paramount']
+    spotify: ['img/spotify.svg', 'spotify'], paramount: ['img/paramount-plus-logo.svg', 'paramount'],
+    vivo: ['img/vivo.png', 'vivo'], claro: ['img/claro.png', 'claro'], tim: ['img/tim.png', 'tim']
   };
   var WORD = { vivo: 'vivo', claro: 'Claro', tim: 'TIM' };
   var $ = function (id) { return document.getElementById(id); };
@@ -55,7 +56,9 @@
       var lg = LOGO[it.id];
       if (lg) {
         tile.classList.add('logo'); tile.dataset.logo = lg[1];
-        var im = document.createElement('img'); im.src = lg[0]; im.alt = ''; im.decoding = 'async'; tile.appendChild(im);
+        var im = document.createElement('img'); im.src = lg[0]; im.alt = ''; im.decoding = 'async';
+        im.onerror = function () { tile.classList.remove('logo'); tile.classList.add('word', 'w-' + it.id); tile.textContent = WORD[it.id] || br.t; };
+        tile.appendChild(im);
       } else {
         tile.classList.add('word', 'w-' + it.id); tile.textContent = WORD[it.id] || br.t;
       }
