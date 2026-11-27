@@ -67,6 +67,11 @@ function safeNext() {
 function go(url) { location.replace(url); }
 const nextQS = () => { const n = new URLSearchParams(location.search).get('next'); return n ? '?next=' + encodeURIComponent(safeNext()) : ''; };
 
+/* links entre login e cadastro (mantêm o ?next=) */
+function wireNav() {
+  document.querySelectorAll('[data-go]').forEach((a) => { a.href = a.dataset.go + '.html' + nextQS(); });
+}
+
 /* telefone */
 function maskPhone(v) {
   const d = String(v).replace(/\D/g, '').slice(0, 11);
@@ -215,7 +220,7 @@ function notConfigured() {
 /* ================= CADASTRO ================= */
 function initRegister() {
   const f = $('regForm');
-  const lt = $('toLogin'); if (lt) lt.href = 'login.html' + nextQS();
+  wireNav();
   wireEyes();
   const inp = { name: $('rName'), phone: $('rPhone'), mail: $('rMail'), pass: $('rPass'), pass2: $('rPass2') };
   const hint = (id, txt, kind) => {
@@ -225,6 +230,16 @@ function initRegister() {
     const i = $(id); if (i) i.classList.toggle('bad', kind === 'bad');
   };
   inp.phone.addEventListener('input', () => { inp.phone.value = maskPhone(inp.phone.value); });
+  const meter = $('pwMeter');
+  inp.pass.addEventListener('input', () => {                    // força da senha (só visual)
+    const p = inp.pass.value;
+    let n = 0;
+    if (p.length >= 8) n++;
+    if (/[a-z]/.test(p) && /[A-Z]/.test(p)) n++;
+    if (/\d/.test(p) && /[A-Za-z]/.test(p)) n++;
+    if (/[^A-Za-z0-9]/.test(p) || p.length >= 12) n++;
+    meter.dataset.s = p ? String(n || 1) : '0';
+  });
 
   const cleanName = () => inp.name.value.replace(/\s+/g, ' ').trim();
   const checks = {
@@ -295,7 +310,7 @@ function initRegister() {
 /* ================= LOGIN ================= */
 function initLogin() {
   const f = $('loginForm');
-  const tr = $('toReg'); if (tr) tr.href = 'register.html' + nextQS();
+  wireNav();
   wireEyes();
   if (new URLSearchParams(location.search).get('verified')) showMsg('infoOk', 'E-mail confirmado! Agora é só entrar.');
 
