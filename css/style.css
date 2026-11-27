@@ -1004,3 +1004,16 @@ header .logo.has-img{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) both}
 .opts:has(> .opt:nth-child(3):last-child) .opt{padding-left:6px;padding-right:6px}
 .opts:has(> .opt:nth-child(3):last-child) .o-price{font-size:14px}
 .opts:has(> .opt:nth-child(3):last-child) .o-txt i{font-size:10px}
+
+/* ===== animação da logo: brilho passando (como um flash) + pulso de luz azul ===== */
+.logo.has-img{position:relative}
+.logo.has-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,#ffffffe6 50%,transparent 62%);
+  background-size:200% 100%;background-position:130% 0;
+  -webkit-mask:url(../img/logo.png) center/contain no-repeat;mask:url(../img/logo.png) center/contain no-repeat;
+  animation:logoShine 5s ease-in-out 1.4s infinite}
+.logo-img{animation:logoGlow 3.6s ease-in-out infinite alternate}
+@keyframes logoShine{0%{background-position:130% 0}32%,100%{background-position:-30% 0}}
+@keyframes logoGlow{from{filter:drop-shadow(0 0 8px #3d8bff44)}to{filter:drop-shadow(0 0 20px #4fc3ffb3)}}
+.fbrand .logo.has-img::after{animation-delay:2.6s}
+@media(prefers-reduced-motion:reduce){.logo.has-img::after{animation:none;display:none}.logo-img{animation:none}}
