@@ -214,6 +214,8 @@
 <div class="empty-act"><a class="cta" href="#recargas" data-close>Ver recargas</a><a class="ghost" href="#streamings" data-close>Ver streamings</a></div>
 </div>
 <ul class="items" id="itemsList"></ul>
+<a class="cm-link" id="cmLink" href="#recargas" data-close hidden><span>+</span>Continuar comprando</a>
+<ul class="perks" id="perks" hidden><li><svg class="ic"><use href="#i-shield"/></svg><span>Compra segura</span></li><li><svg class="ic fill"><use href="#i-wa"/></svg><span>Entrega no WhatsApp</span></li><li><svg class="ic"><use href="#i-clock"/></svg><span>Suporte 8h às 22h</span></li></ul>
 </div>
 <form id="viewForm" hidden novalidate>
 <div class="sum"><span>Total do pedido</span><b id="totalForm">R$ 0,00</b></div>
@@ -241,6 +243,7 @@
 </div>
 </div>
 <div class="d-foot" id="footCart">
+<div class="d-save" id="saveRow" hidden><span><svg class="ic"><use href="#i-check"/></svg>Você economiza</span><b id="saveVal">R$ 0,00</b></div>
 <div class="sum"><span>Total</span><b id="totalCart">R$ 0,00</b></div>
 <button class="buy big" id="toCheckout" type="button" disabled>Ir para o pagamento<svg class="ic"><use href="#i-arrow"/></svg></button>
 <p class="safe"><svg class="ic"><use href="#i-shield"/></svg>Pagamento seguro via Pix</p>
