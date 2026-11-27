@@ -96,16 +96,16 @@
     $('totalCart').textContent = t; $('totalForm').textContent = t; $('totalPix').textContent = t;
   }
 
-  var SUBS = { form: 'Informe seus dados para receber o pedido', pix: 'Pague pelo app do seu banco', done: 'Tudo certo!' };
-  var TITLES = { cart: 'Meu carrinho', form: 'Seus dados', pix: 'Pagamento via Pix', done: 'Pedido' };
+  var SUBS = { auth: 'Conta necessária para pagar', form: 'Confira seus dados para receber o pedido', pix: 'Pague pelo app do seu banco', done: 'Tudo certo!' };
+  var TITLES = { cart: 'Meu carrinho', auth: 'Sua conta', form: 'Seus dados', pix: 'Pagamento via Pix', done: 'Pedido' };
   function view(name) {
     curView = name;
     $('viewCart').hidden = name !== 'cart'; $('footCart').hidden = name !== 'cart'; if (name !== 'pix') stopPolling();
-    $('viewForm').hidden = name !== 'form'; $('viewPix').hidden = name !== 'pix'; $('viewDone').hidden = name !== 'done';
+    $('viewAuth').hidden = name !== 'auth'; $('viewForm').hidden = name !== 'form'; $('viewPix').hidden = name !== 'pix'; $('viewDone').hidden = name !== 'done';
     $('drawerTitle').textContent = TITLES[name];
     var n = cart.reduce(function (s, i) { return s + i.qty; }, 0);
     $('drawerSub').textContent = name === 'cart' ? (n === 0 ? 'Nenhum item' : n + (n === 1 ? ' item' : ' itens')) : SUBS[name];
-    var order = ['cart', 'form', 'pix', 'done'], at = order.indexOf(name);
+    var order = ['cart', 'form', 'pix', 'done'], at = order.indexOf(name === 'auth' ? 'cart' : name);
     drawer.dataset.step = name;
     drawer.querySelectorAll('.stp li').forEach(function (li) {
       var k = order.indexOf(li.dataset.s);
@@ -144,7 +144,71 @@
     });
   });
   cartBtn.addEventListener('click', openDrawer);
-  $('toCheckout').addEventListener('click', function () { view('form'); $('fName').focus(); });
+
+  /* ---------- conta: o Pix só é gerado para quem tem conta com e-mail confirmado ---------- */
+  function gateState() {
+    var A = window.FlashAuth;
+    if (!A) return 'missing';
+    if (!A.ready) return 'wait';
+    if (!A.configured) return 'nocfg';
+    if (!A.user) return 'login';
+    if (!A.verified) return 'verify';
+    return 'ok';
+  }
+  function fmtPhone(v) {
+    var d = String(v || '').replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '').slice(0, 11);
+    if (d.length <= 2) return d;
+    var cut = d.length > 10 ? 7 : 6;
+    return '(' + d.slice(0, 2) + ') ' + d.slice(2, cut) + (d.length > cut ? '-' + d.slice(cut) : '');
+  }
+  function prefill() {
+    var A = window.FlashAuth, p = A && A.profile;
+    if (!p) return;
+    if (!$('fName').value && p.name) $('fName').value = p.name;
+    if (!$('fPhone').value && p.phone) $('fPhone').value = fmtPhone(p.phone);
+  }
+  function showGate(kind) {
+    var A = window.FlashAuth || {};
+    var verify = kind === 'verify', nocfg = kind === 'nocfg';
+    $('authLogin').hidden = verify || nocfg; $('authReg').hidden = verify || nocfg;
+    $('authResend').hidden = !verify; $('authRefresh').hidden = !verify;
+    if (verify) {
+      $('authTitle').textContent = 'Confirme seu e-mail';
+      $('authTxt').textContent = 'Enviamos um link de confirmação para ' + ((A.user && A.user.email) || 'o seu e-mail') + '. Confirme para liberar o pagamento.';
+    } else if (nocfg) {
+      $('authTitle').textContent = 'Pagamento indisponível';
+      $('authTxt').textContent = 'O login ainda não está configurado. Tente novamente em instantes.';
+    } else {
+      $('authTitle').textContent = 'Entre para gerar o Pix';
+      $('authTxt').textContent = 'Seu carrinho fica guardado. Entre ou crie uma conta para continuar com o pagamento.';
+    }
+    view('auth');
+  }
+  function goCheckout() {
+    var g = gateState();
+    if (g === 'missing') { say('Não foi possível carregar o login. Recarregue a página.'); return; }
+    if (g === 'wait') { say('Carregando sua conta…'); return; }
+    if (g !== 'ok') { showGate(g); return; }
+    view('form'); prefill(); $('fName').focus();
+  }
+  $('toCheckout').addEventListener('click', goCheckout);
+  $('authResend').addEventListener('click', function () {
+    window.FlashAuth.resend().then(function () { say('E-mail de confirmação reenviado!'); }, function () { say('Não foi possível reenviar agora. Tente em instantes.'); });
+  });
+  $('authRefresh').addEventListener('click', function () {
+    window.FlashAuth.refresh().then(function () {
+      if (window.FlashAuth.verified) { say('E-mail confirmado!'); goCheckout(); } else say('Ainda não confirmado. Clique no link do e-mail.');
+    }, function () { say('Não foi possível verificar agora.'); });
+  });
+  /* voltou do login com ?checkout=1: reabre o carrinho no pagamento */
+  var pendingCheckout = /[?&]checkout=1/.test(location.search);
+  if (pendingCheckout) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} }
+  window.addEventListener('flashauth:change', function () {
+    var A = window.FlashAuth;
+    if (pendingCheckout && A.ready) { pendingCheckout = false; if (cart.length) { openDrawer(); goCheckout(); } }
+    if (curView === 'form') { if (gateState() === 'ok') prefill(); else if (gateState() !== 'wait') showGate(gateState()); }
+    else if (curView === 'auth' && gateState() === 'ok') { view('form'); prefill(); }
+  });
 
   /* ---------- Pix via gateway (backend no Cloudflare) ---------- */
   var API = (CFG.apiBase || '') + '/api';
@@ -206,7 +270,12 @@
       items: cart.map(function (i) { return { id: i.id, qty: i.qty, value: i.value }; }),
       customer: { name: $('fName').value.trim(), phone: $('fPhone').value.trim(), note: $('fNote').value.trim() }
     };
-    fetch(API + '/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+    var A = window.FlashAuth;
+    (A ? A.getToken() : Promise.resolve(null))
+      .then(function (token) {
+        if (!token) throw new Error('Entre na sua conta para gerar o Pix.');
+        return fetch(API + '/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }, body: JSON.stringify(body) });
+      })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
         if (!res.ok || !res.d.pixCode) throw new Error(res.d.error || 'Não foi possível gerar o Pix agora. Tente novamente em instantes.');
@@ -261,11 +330,6 @@
 
   window.addEventListener('hashchange', function () {
     showTab(location.hash.slice(1), false);
-  });
-
-  document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    say('O login ainda não está ativo.');
   });
 
   showTab(location.hash.slice(1), false);
