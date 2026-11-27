@@ -342,7 +342,9 @@ function initSite() {
     guest.hidden = !!u; box.hidden = !u;
     if (!u) return;
     const p = state.profile || {};
-    $('accName').textContent = p.name || u.displayName || 'Cliente';
+    const nm = p.name || u.displayName || 'Cliente';
+    $('accName').textContent = nm;
+    $('accAvatar').textContent = nm.trim().charAt(0).toUpperCase() || 'C';
     $('accMail').textContent = u.email || '';
     $('accPhone').textContent = p.phone ? showPhone(p.phone) : '—';
     const st = $('accStatus');
