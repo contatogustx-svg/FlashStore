@@ -1017,3 +1017,7 @@ header .logo.has-img{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) both}
 @keyframes logoGlow{from{filter:drop-shadow(0 0 8px #3d8bff44)}to{filter:drop-shadow(0 0 20px #4fc3ffb3)}}
 .fbrand .logo.has-img::after{animation-delay:2.6s}
 @media(prefers-reduced-motion:reduce){.logo.has-img::after{animation:none;display:none}.logo-img{animation:none}}
+
+/* o link da logo tem o mesmo tamanho da imagem (evita o brilho sair do lugar no rodapé) */
+.logo.has-img{display:block;width:-moz-fit-content;width:fit-content;max-width:100%;align-self:flex-start;justify-self:start}
+.logo.has-img .logo-img{max-width:100%}
