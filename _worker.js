@@ -76,6 +76,32 @@ async function parseWebhook(env, request) {
   const e = new Error('Webhook não implementado.'); e.status = 501; throw e;
 }
 
+/* ================= CONTA (Firebase Authentication) ================= */
+// O Pix só é gerado para quem tem conta com e-mail confirmado. A checagem é feita aqui no servidor,
+// porque o navegador pode ser burlado. Variável no Cloudflare: FIREBASE_API_KEY (a "Chave de API da Web" do projeto).
+function httpError(status, message) { const e = new Error(message); e.status = status; return e; }
+
+async function verifyUser(request, env) {
+  const m = (request.headers.get('Authorization') || '').match(/^Bearer (.+)$/);
+  if (!m) throw httpError(401, 'Entre na sua conta para gerar o Pix.');
+  if (!env.FIREBASE_API_KEY) throw httpError(503, 'Login ainda não configurado.');
+  let res;
+  try {
+    res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + encodeURIComponent(env.FIREBASE_API_KEY), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken: m[1] }),
+    });
+  } catch (e) { throw httpError(503, 'Não foi possível validar sua conta agora. Tente novamente.'); }
+  if (!res.ok) throw httpError(401, 'Sessão expirada. Entre na sua conta novamente.');
+  const data = await res.json().catch(() => ({}));
+  const user = data.users && data.users[0];
+  if (!user) throw httpError(401, 'Sessão expirada. Entre na sua conta novamente.');
+  if (user.disabled) throw httpError(403, 'Esta conta está desativada.');
+  if (!user.emailVerified) throw httpError(403, 'Confirme seu e-mail para gerar o Pix.');
+  return { uid: user.localId, email: user.email || '' };
+}
+
 /* ================= ROTAS ================= */
 
 const json = (data, status = 200) =>
@@ -83,6 +109,7 @@ const json = (data, status = 200) =>
 
 async function handleCheckout({ request, env }) {
   try {
+    const account = await verifyUser(request, env); // sem conta confirmada, não gera Pix
     const body = await request.json().catch(() => null);
     if (!body) return json({ error: 'Requisição inválida.' }, 400);
 
@@ -105,7 +132,7 @@ async function handleCheckout({ request, env }) {
     if (env.ORDERS) {
       await env.ORDERS.put(
         orderId,
-        JSON.stringify({ status: 'pending', totalCents, lines, customer: { name, phone, note }, gatewayId: charge.gatewayId, createdAt: Date.now() }),
+        JSON.stringify({ status: 'pending', totalCents, lines, customer: { name, phone, note }, account, gatewayId: charge.gatewayId, createdAt: Date.now() }),
         { expirationTtl: 60 * 60 * 24 * 3 }
       );
     }
