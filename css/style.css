@@ -769,7 +769,6 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 
 /* ===== Fundo ambiente do site (grade + luzes coloridas) ===== */
 .site-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-.site-bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#5b8fd91a 1px,transparent 1px),linear-gradient(90deg,#5b8fd91a 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 55% at 50% 22%,#000,transparent 85%);mask-image:radial-gradient(ellipse 80% 55% at 50% 22%,#000,transparent 85%)}
 .site-bg i{position:absolute;border-radius:50%;filter:blur(110px);opacity:.42;animation:float 14s ease-in-out infinite;will-change:transform}
 .site-bg .a1{width:520px;height:520px;left:-160px;top:4%;background:#2a58c8}
 .site-bg .a2{width:460px;height:460px;right:-120px;top:26%;background:#6a2cd8;animation-delay:-5s}
