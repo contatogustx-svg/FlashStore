@@ -577,3 +577,41 @@
   } else { visible = true; }
   buildDots(); play();
 })();
+
+
+/* logos dos planos e das recargas: carregam logo de cara e nunca ficam sumidas */
+(function () {
+  var SEL = '.card .lg img, .cats .mini img, .rt-lg img, .item .tile img';
+  var URLS = ['vivo.png', 'claro.png', 'tim.png', 'netflix.png', 'logodisney.png', 'primevideo.png', 'hbomax.png', 'spotify.svg', 'paramount-plus-logo.svg'];
+
+  /* 1) baixa e decodifica todas as logos de uma vez, antes do usuário rolar até elas */
+  URLS.forEach(function (n) {
+    var im = new Image();
+    im.decoding = 'async';
+    im.src = 'img/' + n;
+    if (im.decode) im.decode().catch(function () {});
+  });
+
+  function isSvg(im) { return /\.svg(\?|$)/.test(im.getAttribute('src') || ''); }
+  function broken(im) { return im.complete && im.naturalWidth === 0 && !isSvg(im); }
+  function reload(im) {
+    var t = +im.dataset.tries || 0;
+    if (t >= 2) return;
+    im.dataset.tries = t + 1;
+    im.src = (im.getAttribute('src') || '').split('?')[0] + '?r=' + Date.now();
+  }
+
+  /* 2) nada de lazy nas logos; se alguma falhou ou foi descartada pelo navegador, recarrega */
+  function check() {
+    [].forEach.call(document.querySelectorAll(SEL), function (im) {
+      if (im.loading !== 'eager') im.loading = 'eager';
+      if (broken(im)) reload(im);
+    });
+  }
+  check();
+  window.addEventListener('load', check);
+  window.addEventListener('pageshow', check);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) check(); });
+  var rail = document.getElementById('streamRail');
+  if (rail) rail.addEventListener('scroll', (function () { var t; return function () { clearTimeout(t); t = setTimeout(check, 250); }; })(), { passive: true });
+})();
