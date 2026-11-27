@@ -753,3 +753,16 @@ header .logo .wm{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) .25s both}
 .d-foot .sum{padding:14px 18px;border-radius:16px}
 #toCheckout{padding:16px;font-size:15px;border-radius:16px;background:linear-gradient(135deg,#2a58c8,#4a80d4);box-shadow:0 12px 28px #2a58c866,inset 0 1px 0 #ffffff40}
 @media(max-width:560px){.item{grid-template-columns:56px 1fr auto;padding:12px}.item .tile{width:56px;height:56px;border-radius:16px}.item .pr{font-size:16.5px}.perks li{font-size:11px}}
+
+/* ===== Logos das operadoras (Vivo, Claro, TIM) ===== */
+.vivo .top .lg,.claro .top .lg,.tim .top .lg{position:relative;z-index:1;display:grid;place-items:center;width:auto;height:auto;background:none;border:0;box-shadow:none;border-radius:0;overflow:visible;backdrop-filter:none;transform:none}
+.vivo .top .lg::before,.claro .top .lg::before,.tim .top .lg::before{display:none}
+.vivo .top .lg img,.claro .top .lg img,.tim .top .lg img{display:block;width:auto;height:44px;max-width:150px;object-fit:contain;filter:drop-shadow(0 4px 12px #0006);transition:transform .3s ease}
+.card.vivo:hover .top .lg img,.card.claro:hover .top .lg img,.card.tim:hover .top .lg img{transform:scale(1.06)}
+.vivo .top .lg img{height:40px;max-width:140px}
+.claro .top .lg img{height:68px;max-width:68px}
+.tim .top .lg img{height:34px;max-width:140px}
+.item .tile[data-logo=vivo] img{height:20px;max-width:54px}
+.item .tile[data-logo=claro] img{height:42px;max-width:42px}
+.item .tile[data-logo=tim] img{height:18px;max-width:54px}
+@media(prefers-reduced-motion:reduce){.vivo .top .lg img,.claro .top .lg img,.tim .top .lg img{transition:none}}
