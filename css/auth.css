@@ -289,3 +289,8 @@ body[data-page="login"] .auth-shell{align-items:center;padding-top:14px}
 .acc-link .ct small{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){.acc-link,.acc-link .go,.acc-me .acc-rows li,.acc-me .acc-out,.acc-why .acc-steps li{transition:none}}
+
+/* logo grande no topo do login/cadastro */
+.auth-top .logo-img.logo-lg{height:96px}
+@media(max-width:760px){.auth-top .logo-img.logo-lg{height:68px}}
+.auth-aside h2{text-wrap:balance}
