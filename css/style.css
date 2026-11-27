@@ -1027,11 +1027,10 @@ header .logo.has-img{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) both}
 /* Netflix e Claro são vermelhos e o fundo do card também era vermelho: a logo "sumia".
    Agora o topo desses cards é escuro e a logo aparece com clareza. */
 .card.s.netflix .top{background:radial-gradient(circle at 50% 0,color-mix(in srgb,#e50914 16%,#232a44),#0a1020 88%)}
-.card.claro .top{background:radial-gradient(circle at 50% 0,#2c3150,#0a0f20 88%)}
-.card.claro .top .lg img{border-radius:50%;box-shadow:0 0 0 2px #ffffff38,0 6px 18px #000a}
+.card.claro .top .lg img{border-radius:50%;box-shadow:0 0 0 3px #ffffffe6,0 8px 20px #000b}
 /* mesma correção na logo do carrinho */
-.item .tile[data-logo=netflix],.item .tile[data-logo=claro]{background:radial-gradient(circle at 50% 0,#2c3150,#0a0f20 92%);border-color:#ffffff26;box-shadow:0 8px 20px #0007,inset 0 1px 0 #ffffff25}
-.item .tile[data-logo=claro] img{border-radius:50%}
+.item .tile[data-logo=netflix]{background:radial-gradient(circle at 50% 0,#2c3150,#0a0f20 92%);border-color:#ffffff26;box-shadow:0 8px 20px #0007,inset 0 1px 0 #ffffff25}
+.item .tile[data-logo=claro] img{border-radius:50%;box-shadow:0 0 0 2px #ffffffe6}
 /* a imagem fica sempre pintada: sem camada própria no carrossel (era isso que apagava a logo no celular) */
 .rail>.card{will-change:auto}
 .card .top .lg img,.cats .mini img,.rt-lg img{opacity:1;visibility:visible;backface-visibility:hidden}
