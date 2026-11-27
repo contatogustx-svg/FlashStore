@@ -998,3 +998,9 @@ header .logo.has-img{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) both}
 .fbrand .logo-img{height:84px}
 @media(max-width:760px){.logo-img{height:46px}.fbrand .logo-img{height:68px}}
 @media(prefers-reduced-motion:reduce){header .logo.has-img{animation:none!important}.logo-img{transition:none}}
+
+/* cartão com 3 opções (ex.: Spotify 1, 2 e 3 meses): lado a lado */
+.opts:has(> .opt:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.opts:has(> .opt:nth-child(3):last-child) .opt{padding-left:6px;padding-right:6px}
+.opts:has(> .opt:nth-child(3):last-child) .o-price{font-size:14px}
+.opts:has(> .opt:nth-child(3):last-child) .o-txt i{font-size:10px}
