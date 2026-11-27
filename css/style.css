@@ -883,3 +883,16 @@ nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
 .cats a.feat .mini img[src*="spotify"]{height:12px}
 }
 @media(max-width:339px){.cats{grid-template-columns:1fr}}
+
+/* ===== Correções: etiqueta "Em breve" (desktop) e selo do rodapé (celular) ===== */
+@media(min-width:1001px){
+.cats a[data-soon]{padding-bottom:38px}
+.cats a[data-soon] .tag{bottom:11px;right:14px}
+}
+@media(max-width:560px){
+.sec-note{gap:8px;padding:8px 10px 8px 8px;border-radius:14px}
+.sn-ic{width:32px;height:32px;border-radius:10px}
+.sec-note .sn-ic .ic{width:18px;height:18px}
+.sn-tx b{white-space:normal;font-size:12px;line-height:1.2;overflow-wrap:anywhere}
+.sn-tx small{font-size:11px}
+}
