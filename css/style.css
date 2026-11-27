@@ -1033,10 +1033,18 @@ header .logo.has-img{animation:wmIn .8s cubic-bezier(.2,.9,.3,1) both}
 .item .tile[data-logo=claro] img{border-radius:50%;box-shadow:0 0 0 2px #ffffffe6}
 /* a imagem fica sempre pintada: sem camada própria no carrossel (era isso que apagava a logo no celular) */
 .rail>.card{will-change:auto}
-.card .top .lg img,.cats .mini img,.rt-lg img{opacity:1;visibility:visible;backface-visibility:hidden}
+.card .top .lg img,.cats .mini img,.rt-lg img{opacity:1;visibility:visible}
 /* celular/toque: sem sombra em filtro nem "hover grudado" nas logos (pesava e piscava) */
 @media (hover:none){
   .s .top .lg img,.vivo .top .lg img,.claro .top .lg img,.tim .top .lg img,.cats a.feat .mini img,.item .tile img{filter:none}
   .card:hover{transform:none}
   .s:hover .top .lg img,.card.vivo:hover .top .lg img,.card.claro:hover .top .lg img,.card.tim:hover .top .lg img{transform:none}
+}
+
+/* ===== celular/tablet: sem a borda que gira ===== */
+/* A borda brilhante girando (conic-gradient + máscara) repintava o card inteiro, logo incluída, o tempo todo.
+   No celular isso fazia as logos de Vivo, Claro e TIM sumirem ao deslizar os planos e ao recarregar a página.
+   Aqui o card mantém a borda colorida com brilho fixo (definidos acima); no computador a animação continua. */
+@media (max-width:900px),(hover:none){
+  #recargas .card::after,#streamings .card::after{display:none;animation:none}
 }
