@@ -135,33 +135,38 @@
 
 <section class="page" id="conta" data-tabs="conta">
 <div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-user"/></svg></span><div><h2>Minha Conta</h2><p>Entre ou crie sua conta para pagar com Pix e acompanhar seus pedidos.</p></div></div></div>
-<div class="two">
-<div class="panel" id="accGuest">
-<h3>Entrar ou criar conta</h3>
-<p class="acc-txt">Você pode navegar e montar o carrinho sem conta. Para gerar o Pix, é preciso ter uma conta com o e-mail confirmado.</p>
-<a class="buy" id="goLogin" href="login.html">Entrar</a>
-<a class="ghost acc-btn" id="goReg" href="register.html">Criar conta</a>
+<div class="acc-grid">
+<div class="acc-card acc-main" id="accGuest">
+<span class="acc-ic"><svg class="ic"><use href="#i-user"/></svg></span>
+<h3>Entre ou crie sua conta</h3>
+<p class="acc-txt">Você pode navegar e montar o carrinho sem conta. Para gerar o Pix, é só ter uma conta com o e-mail confirmado.</p>
+<div class="acc-actions">
+<a class="buy" id="goLogin" href="login.html">Entrar<svg class="ic"><use href="#i-arrow"/></svg></a>
+<a class="acc-alt" id="goReg" href="register.html">Criar conta grátis</a>
 </div>
-<div class="panel" id="accUser" hidden>
-<h3>Olá, <span id="accName">Cliente</span></h3>
-<ul class="ct2 acc-list">
-<li><svg class="ic"><use href="#i-mail"/></svg><span id="accMail"></span></li>
-<li><svg class="ic fill"><use href="#i-wa"/></svg><span id="accPhone"></span></li>
-<li><svg class="ic"><use href="#i-shield"/></svg><span class="acc-badge wait" id="accStatus">E-mail confirmado</span></li>
+<p class="acc-note"><svg class="ic"><use href="#i-shield"/></svg>Seus dados ficam protegidos e a compra é segura.</p>
+</div>
+<div class="acc-card acc-main acc-me" id="accUser" hidden>
+<div class="acc-id"><span class="acc-avatar" id="accAvatar">F</span><div><small>Bem-vindo(a)</small><h3 id="accName">Cliente</h3></div></div>
+<ul class="acc-rows">
+<li><span class="acc-rt"><svg class="ic"><use href="#i-mail"/></svg>E-mail</span><b id="accMail"></b></li>
+<li><span class="acc-rt"><svg class="ic fill"><use href="#i-wa"/></svg>WhatsApp</span><b id="accPhone"></b></li>
+<li><span class="acc-rt"><svg class="ic"><use href="#i-shield"/></svg>Situação</span><span class="acc-badge wait" id="accStatus">E-mail confirmado</span></li>
 </ul>
 <div class="acc-verify" id="accVerifyRow" hidden>
 <p class="acc-txt">Confirme seu e-mail para poder gerar o Pix. Enviamos um link para a sua caixa de entrada.</p>
-<div class="acc-row"><button class="ghost acc-btn" id="accResend" type="button">Reenviar e-mail</button><button class="ghost acc-btn" id="accRefresh" type="button">Já confirmei</button></div>
+<div class="acc-row"><button class="acc-alt" id="accResend" type="button">Reenviar e-mail</button><button class="acc-alt" id="accRefresh" type="button">Já confirmei</button></div>
 </div>
-<button class="back" id="accLogout" type="button">Sair da conta</button>
+<button class="acc-out" id="accLogout" type="button">Sair da conta</button>
 </div>
-<div class="panel">
-<h3>Vantagens da conta</h3>
-<ul class="benefits">
-<li><svg class="ic"><use href="#i-check"/></svg>Acompanhe seus pedidos em um só lugar</li>
-<li><svg class="ic"><use href="#i-check"/></svg>Repita uma recarga em poucos cliques</li>
-<li><svg class="ic"><use href="#i-check"/></svg>Receba ofertas e novidades</li>
-</ul>
+<div class="acc-card acc-why">
+<h3>Como funciona</h3>
+<ol class="acc-steps">
+<li><b>1</b><div><strong>Crie sua conta</strong><span>Leva menos de um minuto.</span></div></li>
+<li><b>2</b><div><strong>Confirme o e-mail</strong><span>Enviamos um link para a sua caixa de entrada.</span></div></li>
+<li><b>3</b><div><strong>Pague com Pix</strong><span>Gere o QR Code e receba o pedido no WhatsApp.</span></div></li>
+</ol>
+<div class="acc-perks"><span><svg class="ic"><use href="#i-check"/></svg>Acompanhe seus pedidos</span><span><svg class="ic"><use href="#i-check"/></svg>Repita uma recarga rápido</span><span><svg class="ic"><use href="#i-check"/></svg>Receba ofertas</span></div>
 </div>
 </div>
 </section>
