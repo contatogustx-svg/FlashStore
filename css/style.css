@@ -434,7 +434,7 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .s .top .lg img[alt="Disney+"]{height:62px}
 .s .top .lg img[alt="Prime Video"]{height:46px}
 .s .top .lg img[alt="Spotify"]{height:38px}
-.s .top .lg img[alt="Paramount+"]{height:52px;scale:2.3}
+.s .top .lg img[alt="Paramount+"]{height:56px;max-width:150px}
 
 .s .body{gap:0;padding:4px 16px 16px;text-align:center}
 .s h4{font-size:16px;font-weight:600}
@@ -517,7 +517,7 @@ nav a.on{box-shadow:0 0 16px #2c5fd099,inset 0 1px 0 #ffffff40}
 .item .tile[data-logo=prime] img{height:30px;max-width:56px}
 .item .tile[data-logo=hbo] img{height:44px}
 .item .tile[data-logo=spotify] img{height:24px;max-width:58px}
-.item .tile[data-logo=paramount] img{height:34px;scale:2.3}
+.item .tile[data-logo=paramount] img{height:30px;width:auto;max-width:100%}
 .item .tile.word{font-size:19px;color:#fff;font-style:italic}
 .item .tile.w-tim{font-size:20px}
 .item .info b{font-size:15.5px;font-weight:700;letter-spacing:-.2px}
