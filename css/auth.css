@@ -1,0 +1,64 @@
+/* Páginas de login e cadastro (usa as variáveis do style.css) */
+.auth-top{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:1100px;margin:0 auto;padding:18px 20px}
+.auth-top .back-site{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--line);border-radius:10px;background:#0d1630;color:var(--muted);font-size:14px;font-weight:500;transition:.2s}
+.auth-top .back-site:hover{color:#fff;border-color:var(--accent)}
+.auth-main{display:grid;place-items:start center;padding:18px 16px 56px;min-height:calc(100vh - 90px)}
+.auth-card{width:100%;max-width:460px;padding:30px 26px;gap:16px;border-radius:22px;border-color:#22346a;background:linear-gradient(180deg,#0f1a3d,#0b1228);box-shadow:0 24px 60px #000a,0 0 40px #2c5fd01f;animation:fade .35s ease}
+.auth-card.wide{max-width:520px}
+.auth-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:4px}
+.auth-head .bub{margin-bottom:6px}
+.auth-head h1{margin:0;font-size:24px;font-style:italic;font-weight:700;letter-spacing:-.3px}
+.auth-head p{margin:0;font-size:14px;color:var(--muted);max-width:340px}
+.auth-card label{font-weight:500;color:#b4c0dc}
+.auth-card label em{font-style:normal;font-size:12px;font-weight:400;color:#7886aa}
+.auth-card input{width:100%;padding:14px 16px;border-radius:12px;border-color:#2a3f80;background:#08102a}
+.auth-card input:focus{outline:0;border-color:#4a80d4;box-shadow:0 0 0 3px #2c5fd033}
+.auth-card input::placeholder{color:#5b6a91}
+.auth-card input.bad{border-color:#e5566f}
+.pw{position:relative;display:block}
+.pw input{padding-right:48px}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:9px;background:none;color:var(--muted);cursor:pointer}
+.pw button:hover{color:#fff;background:#14214a}
+.pw .ic{font-size:19px}
+.hint{font-size:12px;color:#7886aa;min-height:16px}
+.hint.bad{color:#ffb3bf}
+.hint.ok{color:#4ade9a}
+.auth-card .buy{padding:15px;font-size:15px;border-radius:14px;box-shadow:0 10px 26px #2a58c855;margin-top:6px}
+.auth-card .buy .spin{width:16px;height:16px;border:2px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.auth-card .form-err[hidden],.auth-card .form-ok[hidden]{display:none}
+.form-ok{margin:0;padding:12px 14px;border-radius:12px;background:#0f2a1d;border:1px solid #1f7a4f;color:#9cf0c8;font-size:13px}
+.auth-links{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;font-size:13px;color:var(--muted)}
+.auth-links a,.linkbtn{color:#8fb2ee;font-weight:600;background:none;border:0;padding:0;font:600 13px Poppins,sans-serif;cursor:pointer}
+.auth-links a:hover,.linkbtn:hover{color:#fff;text-decoration:underline}
+.auth-foot{text-align:center;font-size:14px;color:var(--muted)}
+.auth-foot a{color:#8fb2ee;font-weight:600}
+.auth-foot a:hover{color:#fff;text-decoration:underline}
+.verify{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
+.verify .ok{display:grid;place-items:center;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 50% 30%,#1a2c64,#0d1636);border:1px solid #36508f;color:#9cc0f0;font-size:36px}
+.verify h2{margin:0;font-size:21px;font-style:italic}
+.verify p{margin:0;font-size:14px;color:var(--muted)}
+.verify p b{color:var(--text);word-break:break-all}
+.verify .tips{font-size:12px;color:#7886aa}
+.verify .btns{display:grid;gap:10px;width:100%;margin-top:6px}
+.verify .btns .buy,.verify .btns .ghost{justify-content:center;text-align:center;margin:0}
+.verify .btns .ghost{cursor:pointer;color:var(--text);font-family:Poppins,sans-serif}
+.verify .btns button:disabled{opacity:.5;cursor:not-allowed}
+.cfg-warn{padding:12px 14px;border-radius:12px;background:#33290f;border:1px solid #7a6320;color:#f3dc9a;font-size:13px}
+@media(max-width:560px){.auth-card{padding:24px 18px}.auth-top .back-site span{display:none}}
+
+/* ===== aba "Minha Conta" do index ===== */
+.acc-txt{margin:0;font-size:14px;color:var(--muted)}
+.panel .acc-btn{justify-content:center;text-align:center;cursor:pointer;color:var(--text);font-family:Poppins,sans-serif}
+#accGuest .buy{margin-top:4px;padding:14px;font-size:15px;border-radius:12px}
+.acc-list{gap:12px}
+.acc-list span{min-width:0;overflow-wrap:anywhere}
+.acc-badge{display:inline-flex;align-items:center;padding:3px 12px;border-radius:99px;font-size:12px;font-weight:600}
+.acc-badge.ok{background:#0f2a1d;border:1px solid #1f7a4f;color:#9cf0c8}
+.acc-badge.wait{background:#33290f;border:1px solid #7a6320;color:#f3dc9a}
+.acc-verify{display:grid;gap:12px;padding:14px;border-radius:14px;border:1px solid #223463;background:#0a1230}
+.acc-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.acc-row .acc-btn{padding:11px 10px;font-size:13px}
+#accLogout{align-self:flex-start;margin-top:4px;padding:8px 0}
+#viewAuth .empty-act button.ghost{cursor:pointer;color:var(--text);font-family:Poppins,sans-serif}
+@media(max-width:560px){.acc-row{grid-template-columns:1fr}}
