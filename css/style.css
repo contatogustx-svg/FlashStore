@@ -959,3 +959,32 @@ nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
 #recargas .card::after,#streamings .card::after{content:"";position:absolute;inset:0;z-index:3;padding:2px;border-radius:inherit;pointer-events:none;background:conic-gradient(from var(--a),#0000 0 52%,color-mix(in srgb,var(--glow) 75%,#fff) 74%,#fff 84%,color-mix(in srgb,var(--glow) 75%,#fff) 92%,#0000 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 5s linear infinite}
 #recargas .card:hover,#streamings .card:hover{border-color:color-mix(in srgb,var(--glow) 90%,#fff);box-shadow:0 0 0 1px color-mix(in srgb,var(--glow) 45%,transparent),0 0 34px color-mix(in srgb,var(--glow) 50%,transparent),0 16px 38px #000a}
 @media(prefers-reduced-motion:reduce){#recargas .card::after,#streamings .card::after{animation:none}}
+
+/* ===== Banner do grupo do WhatsApp ===== */
+.grp{--g:#25d366;margin:0 0 56px}
+.grp-in{position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:center;gap:26px;padding:28px 34px;border-radius:26px;border:1px solid color-mix(in srgb,var(--g) 40%,#12351f);background:radial-gradient(80% 140% at 0 0,color-mix(in srgb,var(--g) 26%,transparent),transparent 60%),radial-gradient(50% 100% at 100% 100%,#2a58c833,transparent 70%),linear-gradient(160deg,#0f2a2a,#091523);box-shadow:0 0 28px color-mix(in srgb,var(--g) 22%,transparent),0 20px 50px #0008,inset 0 1px 0 #ffffff12}
+.grp-in::before{content:"";position:absolute;left:6%;right:6%;top:0;height:2px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.grp-in::after{content:"";position:absolute;inset:0;z-index:3;padding:2px;border-radius:inherit;pointer-events:none;background:conic-gradient(from var(--a),#0000 0 55%,color-mix(in srgb,var(--g) 75%,#fff) 76%,#fff 85%,color-mix(in srgb,var(--g) 75%,#fff) 93%,#0000 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 6s linear infinite}
+.grp-bub{flex:none;display:grid;place-items:center;width:84px;height:84px;border-radius:26px;color:#fff;font-size:44px;background:linear-gradient(145deg,#3ee27f,#128c4a);box-shadow:inset 0 2px 0 #ffffff66,0 0 0 1px #ffffff22,0 14px 34px color-mix(in srgb,var(--g) 50%,transparent)}
+.grp-bub .ic{width:1em;height:1em}
+.grp-tx{flex:1;min-width:0}
+.grp-tx h2{margin:0 0 6px;font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.4px;line-height:1.15;color:#fff}
+.grp-tx p{margin:0;max-width:52ch;font-size:14.5px;line-height:1.5;color:#b4c8d8}
+.grp-tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+.grp-tags li{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;color:#c9f5da;background:color-mix(in srgb,var(--g) 16%,#0a1a1c);border:1px solid color-mix(in srgb,var(--g) 38%,transparent)}
+.grp-btn{flex:none;display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:14px;font-weight:700;font-size:15px;color:#07381c;background:#fff;text-decoration:none;box-shadow:0 10px 28px color-mix(in srgb,var(--g) 40%,transparent);transition:.25s}
+.grp-btn .ic{width:18px;height:18px;transition:.25s}
+.grp-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px color-mix(in srgb,var(--g) 60%,transparent)}
+.grp-btn:hover .ic{transform:translateX(4px)}
+@media(max-width:760px){
+.grp{margin-bottom:44px}
+.grp-in{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:14px;padding:20px 16px;border-radius:22px}
+.grp-tx{display:contents}
+.grp-bub{grid-column:1;grid-row:1;width:60px;height:60px;border-radius:19px;font-size:32px}
+.grp-tx h2{grid-column:2;grid-row:1;margin:0;font-size:19px}
+.grp-tx p{grid-column:1/-1;grid-row:2;font-size:13.5px}
+.grp-tags{grid-column:1/-1;grid-row:3;margin:0;gap:6px}
+.grp-tags li{padding:5px 10px;font-size:11.5px}
+.grp-btn{grid-column:1/-1;grid-row:4;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){.grp-in::after{animation:none}}
