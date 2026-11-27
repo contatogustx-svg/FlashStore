@@ -896,3 +896,15 @@ nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
 .sn-tx b{white-space:normal;font-size:12px;line-height:1.2;overflow-wrap:anywhere}
 .sn-tx small{font-size:11px}
 }
+
+/* ===== Recargas: cards lado a lado no tablet/celular (deslizar para o lado) ===== */
+@media(max-width:900px){
+#recargas .g3{display:flex;grid-template-columns:none;max-width:none;width:100%;gap:14px;margin:0;padding:10px 4px 22px;align-items:stretch;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding:0 4px;scroll-behavior:smooth;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+#recargas .g3::-webkit-scrollbar{display:none}
+#recargas .g3>.card{flex:0 0 calc((100% - 28px) / 2.25);min-width:0;scroll-snap-align:start;opacity:1!important;animation:none!important}
+}
+@media(max-width:560px){
+#recargas .g3{gap:12px}
+#recargas .g3>.card{flex-basis:84%}
+}
+@media(prefers-reduced-motion:reduce){#recargas .g3{scroll-behavior:auto}}
