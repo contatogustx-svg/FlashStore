@@ -135,7 +135,7 @@
 </section>
 
 <section class="page" id="conta" data-tabs="conta">
-<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-user"/></svg></span><div><h2>Minha Conta</h2><p>Entre ou crie sua conta para pagar com Pix e acompanhar seus pedidos.</p></div></div></div>
+<div class="sec"><div class="sec-t"><span class="bub sm"><svg class="ic"><use href="#i-user"/></svg></span><div><h2>Minha Conta</h2><p id="accSub">Entre ou crie sua conta para pagar com Pix e acompanhar seus pedidos.</p></div></div></div>
 <div class="acc-grid">
 <div class="acc-card acc-main" id="accGuest">
 <span class="acc-ic"><svg class="ic"><use href="#i-user"/></svg></span>
@@ -148,19 +148,23 @@
 <p class="acc-note"><svg class="ic"><use href="#i-shield"/></svg>Seus dados ficam protegidos e a compra é segura.</p>
 </div>
 <div class="acc-card acc-main acc-me" id="accUser" hidden>
-<div class="acc-id"><span class="acc-avatar" id="accAvatar">F</span><div><small>Bem-vindo(a)</small><h3 id="accName">Cliente</h3></div></div>
+<div class="acc-cover" aria-hidden="true"></div>
+<div class="acc-head">
+<span class="acc-avatar" id="accAvatar">F</span>
+<div class="acc-who"><small>Bem-vindo(a)</small><h3 id="accName">Cliente</h3><span class="acc-badge wait" id="accStatus">E-mail confirmado</span></div>
+</div>
 <ul class="acc-rows">
-<li><span class="acc-rt"><svg class="ic"><use href="#i-mail"/></svg>E-mail</span><b id="accMail"></b></li>
-<li><span class="acc-rt"><svg class="ic fill"><use href="#i-wa"/></svg>WhatsApp</span><b id="accPhone"></b></li>
-<li><span class="acc-rt"><svg class="ic"><use href="#i-shield"/></svg>Situação</span><span class="acc-badge wait" id="accStatus">E-mail confirmado</span></li>
+<li><span class="acc-ri" style="--c:#3d8bff"><svg class="ic"><use href="#i-mail"/></svg></span><div class="acc-rv"><small>E-mail</small><b id="accMail"></b></div></li>
+<li><span class="acc-ri" style="--c:#25d366"><svg class="ic fill"><use href="#i-wa"/></svg></span><div class="acc-rv"><small>WhatsApp</small><b id="accPhone"></b></div></li>
 </ul>
 <div class="acc-verify" id="accVerifyRow" hidden>
 <p class="acc-txt">Confirme seu e-mail para poder gerar o Pix. Enviamos um link para a sua caixa de entrada.</p>
 <div class="acc-row"><button class="acc-alt" id="accResend" type="button">Reenviar e-mail</button><button class="acc-alt" id="accRefresh" type="button">Já confirmei</button></div>
 </div>
-<button class="acc-out" id="accLogout" type="button">Sair da conta</button>
+<p class="acc-safe"><svg class="ic"><use href="#i-shield"/></svg><span><b>Conta protegida</b>Seus dados ficam seguros e o pedido chega direto no seu WhatsApp.</span></p>
+<button class="acc-out" id="accLogout" type="button"><svg class="ic" viewBox="0 0 24 24"><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3M16 8l4 4-4 4M20 12H9"/></svg>Sair da conta</button>
 </div>
-<div class="acc-card acc-why">
+<div class="acc-card acc-why" id="accWhy">
 <h3>Como funciona</h3>
 <ol class="acc-steps">
 <li><b>1</b><div><strong>Crie sua conta</strong><span>Leva menos de um minuto.</span></div></li>
@@ -168,6 +172,15 @@
 <li><b>3</b><div><strong>Pague com Pix</strong><span>Gere o QR Code e receba o pedido no WhatsApp.</span></div></li>
 </ol>
 <div class="acc-perks"><span><svg class="ic"><use href="#i-check"/></svg>Acompanhe seus pedidos</span><span><svg class="ic"><use href="#i-check"/></svg>Repita uma recarga rápido</span><span><svg class="ic"><use href="#i-check"/></svg>Receba ofertas</span></div>
+</div>
+<div class="acc-card acc-go" id="accQuick" hidden>
+<div class="acc-go-t"><h3>O que você quer fazer?</h3><p>Escolha um atalho e finalize em poucos cliques.</p></div>
+<div class="acc-links">
+<a class="acc-link" href="#recargas" style="--c:#3d8bff"><span class="bub"><svg class="ic"><use href="#i-phone"/></svg></span><span class="ct"><b>Recarregar celular</b><small>Vivo, Claro e TIM com desconto</small></span><i class="go"><svg class="ic"><use href="#i-arrow"/></svg></i></a>
+<a class="acc-link" href="#streamings" style="--c:#a855f7"><span class="bub"><svg class="ic"><use href="#i-tv"/></svg></span><span class="ct"><b>Assinar streaming</b><small>Netflix, Disney+, Prime e mais</small></span><i class="go"><svg class="ic"><use href="#i-arrow"/></svg></i></a>
+<a class="acc-link" href="#suporte" style="--c:#22c55e"><span class="bub"><svg class="ic"><use href="#i-headset"/></svg></span><span class="ct"><b>Falar com o suporte</b><small>Atendimento humano no WhatsApp</small></span><i class="go"><svg class="ic"><use href="#i-arrow"/></svg></i></a>
+</div>
+<div class="acc-trust"><span><svg class="ic"><use href="#i-bolt"/></svg>Pix em segundos</span><span><svg class="ic"><use href="#i-wa"/></svg>Entrega no WhatsApp</span><span><svg class="ic"><use href="#i-shield"/></svg>Compra segura</span></div>
 </div>
 </div>
 </section>
