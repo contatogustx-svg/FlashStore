@@ -182,6 +182,14 @@ export default {
     if (pathname === '/api/status' && request.method === 'GET') return handleStatus({ request, env });
     if (pathname === '/api/webhook' && request.method === 'POST') return handleWebhook({ request, env });
     if (pathname.startsWith('/api/')) return json({ error: 'Não encontrado.' }, 404);
-    return env.ASSETS.fetch(request); // site estático
+    const res = await env.ASSETS.fetch(request); // site estático
+    // imagens ficam 30 dias no cache do navegador: as logos aparecem na hora nas próximas visitas
+    // (se trocar uma imagem mantendo o nome, mude o arquivo de nome ou use ?v=2 no html)
+    if (res.ok && /^\/img\/.+\.(webp|png|jpe?g|svg|ico)$/i.test(pathname)) {
+      const r = new Response(res.body, res);
+      r.headers.set('Cache-Control', 'public, max-age=2592000');
+      return r;
+    }
+    return res;
   },
 };
