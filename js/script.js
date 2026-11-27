@@ -66,9 +66,12 @@
       var chip = document.createElement('span'); chip.className = 'chip';
       chip.textContent = it.value ? 'Recarga de ' + brl(it.value) : (it.kind || 'Assinatura mensal');
       kind.appendChild(chip);
+      if (it.value && it.value > it.price) { var off = document.createElement('span'); off.className = 'off'; off.textContent = Math.round((it.value - it.price) / it.value * 100) + '% OFF'; kind.appendChild(off); }
       if (it.qty > 1) { var each = document.createElement('em'); each.textContent = brl(it.price) + ' cada'; kind.appendChild(each); }
       info.append(name, kind);
-      var pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = brl(it.price * it.qty);
+      var pr = document.createElement('span'); pr.className = 'pr';
+      var pv = document.createElement('b'); pv.textContent = brl(it.price * it.qty); pr.appendChild(pv);
+      if (it.value && it.value > it.price) { var was = document.createElement('s'); was.textContent = brl(it.value * it.qty); pr.appendChild(was); }
       var q = document.createElement('div'); q.className = 'qty';
       var minus = document.createElement('button'); minus.type = 'button'; minus.textContent = '−'; minus.setAttribute('aria-label', 'Diminuir quantidade');
       var num = document.createElement('span'); num.textContent = it.qty;
@@ -85,6 +88,9 @@
     drawer.toggleAttribute('data-empty', cart.length === 0);
     if (curView === 'cart') $('drawerSub').textContent = n === 0 ? 'Nenhum item' : n + (n === 1 ? ' item' : ' itens');
     $('emptyMsg').hidden = cart.length > 0;
+    $('cmLink').hidden = cart.length === 0; $('perks').hidden = cart.length === 0;
+    var saved = cart.reduce(function (a, i) { return a + (i.value && i.value > i.price ? (i.value - i.price) * i.qty : 0); }, 0);
+    $('saveRow').hidden = saved <= 0; $('saveVal').textContent = brl(saved);
     $('toCheckout').disabled = cart.length === 0;
     var t = brl(total());
     $('totalCart').textContent = t; $('totalForm').textContent = t; $('totalPix').textContent = t;
