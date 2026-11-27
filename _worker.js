@@ -13,8 +13,11 @@ const STREAMINGS = {
   prime_com:     { name: 'Prime Vídeo com anúncios – Tela privada mensal', cents: 468 },
   hbo_tela:      { name: 'HBO Max Platinum – Tela privada mensal',   cents: 668 },
   hbo_conta:     { name: 'HBO Max Platinum 4K – Conta completa',     cents: 1690 },
-  spotify:       { name: 'Spotify Premium',                          cents: 1690 },
-  paramount:     { name: 'Paramount Plus',                           cents: 2790 },
+  spotify_1m:    { name: 'Conta Spotify Premium – 1 mês',            cents: 600 },
+  spotify_2m:    { name: 'Conta Spotify Premium – 2 meses',          cents: 850 },
+  spotify_3m:    { name: 'Conta Spotify Premium – 3 meses',          cents: 1100 },
+  paramount_tela:  { name: 'Paramount Premium 4K – Tela privada',    cents: 600 },
+  paramount_conta: { name: 'Paramount Premium 4K – Conta completa',  cents: 1600 },
 };
 const RECHARGES = { vivo: 'Recarga Vivo', claro: 'Recarga Claro', tim: 'Recarga TIM' };
 // Valor da recarga (R$) -> quanto o cliente paga (centavos), por operadora.
