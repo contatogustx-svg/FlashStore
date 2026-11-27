@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Criar conta – Flash Store</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#060a14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600;1,800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27%3E%3Cstop offset=%270%27 stop-color=%27%232a58c8%27/%3E%3Cstop offset=%271%27 stop-color=%27%234fc3ff%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27url(%23g)%27/%3E%3Cpath d=%27M36 8L16 36h13l-3 20 22-30H35z%27 fill=%27white%27/%3E%3C/svg%3E">
@@ -12,14 +13,22 @@
 <link rel="stylesheet" href="css/auth.css">
 </head>
 <body data-page="register">
+<div class="auth-bg" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
 <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
-<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.500"/><path d="M3.500 7l8.500 6 8.500-6"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/><path d="M8.500 12l2.500 2.500 4.500-5"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+<symbol id="i-tv" viewBox="0 0 24 24"><rect x="2.500" y="4" width="19" height="13" rx="3"/><path d="M10 8.200v5.600l4.800-2.800z" fill="currentColor" stroke-width="1.400"/><path d="M12 17v3.500M8 20.500h8"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3.200"/><path d="M10.200 4.800h3.600"/><path d="M12.900 8.200l-3.200 4.600h2.500l-1 3.800 3.400-5h-2.500z" fill="currentColor" stroke-width="1"/><path d="M10.500 19.400h3"/><path d="M20.500 8.500a5 5 0 010 7M22.500 6.500a8 8 0 010 11" opacity=".55"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
 <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></symbol>
 <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
-<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0112 5c6 0 10 7 10 7a17 17 0 01-3.2 3.9M6.6 6.7C3.9 8.5 2 12 2 12s4 7 10 7c1.6 0 3-.4 4.300-1M9.900 9.900a3 3 0 004.200 4.200"/></symbol>
+<symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M3 3l18 18M10.6 6.1A9.8 9.8 0 0112 5c6 0 10 7 10 7a17 17 0 01-3.2 3.9M6.6 6.7C3.9 8.5 2 12 2 12s4 7 10 7c1.6 0 3-.4 4.3-1M9.9 9.9a3 3 0 004.2 4.2"/></symbol>
 </defs></svg>
 <div class="auth-top">
 <a class="logo" href="index.html" aria-label="Flash Store"><span class="mark"><svg class="ic"><use href="#i-bolt"/></svg></span><span class="wm"><i class="f">Flash</i> <b>Store</b><small>Recargas &amp; Streamings</small></span></a>
@@ -28,32 +37,34 @@
 <main class="auth-main">
 <div class="auth-shell">
 <aside class="auth-aside">
-<span class="pill"><svg class="ic"><use href="#i-bolt"/></svg>Flash Store</span>
-<h2>Crie sua conta e peça em segundos</h2>
-<p>Cadastre-se uma vez e use sempre que quiser recarregar ou assinar um streaming.</p>
-<ul>
-<li><svg class="ic"><use href="#i-check"/></svg>Pagamento rápido e seguro com Pix</li>
-<li><svg class="ic"><use href="#i-check"/></svg>Entrega do pedido pelo WhatsApp</li>
-<li><svg class="ic"><use href="#i-check"/></svg>Acompanhe todos os seus pedidos</li>
+<span class="pill"><svg class="ic"><use href="#i-bolt"/></svg>Entrega rápida</span>
+<h2>Crie sua conta e <span class="grad">peça em segundos</span></h2>
+<p class="lead">Cadastre-se uma vez e use sempre que quiser recarregar o celular ou assinar um streaming.</p>
+<ul class="feats">
+<li><span class="ft"><svg class="ic"><use href="#i-bolt"/></svg></span><div><b>Pix em segundos</b><small>Gere o QR Code e pague pelo app do seu banco.</small></div></li>
+<li><span class="ft g"><svg class="ic fill"><use href="#i-wa"/></svg></span><div><b>Entrega no WhatsApp</b><small>Você recebe o pedido direto no seu número.</small></div></li>
+<li><span class="ft v"><svg class="ic"><use href="#i-shield"/></svg></span><div><b>Conta protegida</b><small>Confirmamos o seu e-mail para garantir a segurança.</small></div></li>
 </ul>
-<div class="aside-note"><svg class="ic"><use href="#i-shield"/></svg><span>Seus dados protegidos. Confirmamos o seu e-mail para garantir a segurança da conta.</span></div>
+<div class="brands" aria-label="Produtos disponíveis">
+<span style="--c:#e50914">Netflix</span><span style="--c:#2f6bff">Disney+</span><span style="--c:#00a8e1">Prime Vídeo</span><span style="--c:#7b2cff">HBO Max</span><span style="--c:#1ed760">Spotify</span><span style="--c:#6a2cb8">Vivo</span><span style="--c:#c4242e">Claro</span><span style="--c:#24449a">TIM</span>
+</div>
 </aside>
 <div class="auth-col">
-<form class="panel auth-card wide" id="regForm" novalidate>
+<form class="panel auth-card" id="regForm" novalidate>
+<nav class="auth-tabs" aria-label="Conta"><a data-go="login" href="login.html">Entrar</a><a data-go="register" href="register.html" class="on" aria-current="page">Criar conta</a></nav>
 <div class="auth-head">
-<span class="bub"><svg class="ic"><use href="#i-user"/></svg></span>
 <h1>Criar conta</h1>
-<p>Cadastre-se para gerar o seu Pix e acompanhar seus pedidos.</p>
+<p>Leva menos de um minuto. Depois é só confirmar o e-mail.</p>
 </div>
 <p class="cfg-warn" id="cfgWarn" hidden>O Firebase ainda não foi configurado. Preencha o bloco <b>firebase</b> em <b>js/config.js</b>.</p>
-<label for="rName">Nome completo<input id="rName" type="text" autocomplete="name" maxlength="80" placeholder="Nome e sobrenome" required><span class="hint" data-for="rName"></span></label>
-<label for="rPhone">Número de telefone (WhatsApp)<input id="rPhone" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="16" placeholder="(68) 99999-9999" required><span class="hint" data-for="rPhone">Com DDD. É por ele que enviamos o seu pedido.</span></label>
-<label for="rMail">E-mail<input id="rMail" type="email" autocomplete="email" maxlength="254" placeholder="voce@email.com" required><span class="hint" data-for="rMail"></span></label>
-<label for="rPass">Senha<span class="pw"><input id="rPass" type="password" autocomplete="new-password" minlength="8" maxlength="64" placeholder="Mínimo de 8 caracteres" required><button type="button" class="eye" aria-label="Mostrar senha" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></span><span class="hint" data-for="rPass">Use 8 ou mais caracteres, com letras e números.</span></label>
-<label for="rPass2">Confirmar senha<span class="pw"><input id="rPass2" type="password" autocomplete="new-password" maxlength="64" placeholder="Repita a senha" required><button type="button" class="eye" aria-label="Mostrar senha" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></span><span class="hint" data-for="rPass2"></span></label>
+<label for="rName">Nome completo<span class="fld"><svg class="ic"><use href="#i-user"/></svg><input id="rName" type="text" autocomplete="name" maxlength="80" placeholder="Nome e sobrenome" required></span><span class="hint" data-for="rName"></span></label>
+<label for="rPhone">Número de telefone (WhatsApp)<span class="fld"><svg class="ic fill"><use href="#i-wa"/></svg><input id="rPhone" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="16" placeholder="(68) 99999-9999" required></span><span class="hint" data-for="rPhone">Com DDD. É por ele que enviamos o seu pedido.</span></label>
+<label for="rMail">E-mail<span class="fld"><svg class="ic"><use href="#i-mail"/></svg><input id="rMail" type="email" autocomplete="email" maxlength="254" placeholder="voce@email.com" required></span><span class="hint" data-for="rMail"></span></label>
+<label for="rPass">Senha<span class="fld pw"><svg class="ic"><use href="#i-lock"/></svg><input id="rPass" type="password" autocomplete="new-password" minlength="8" maxlength="64" placeholder="Mínimo de 8 caracteres" required><button type="button" class="eye" aria-label="Mostrar senha" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></span><span class="meter" id="pwMeter" data-s="0" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="hint" data-for="rPass">Use 8 ou mais caracteres, com letras e números.</span></label>
+<label for="rPass2">Confirmar senha<span class="fld pw"><svg class="ic"><use href="#i-lock"/></svg><input id="rPass2" type="password" autocomplete="new-password" maxlength="64" placeholder="Repita a senha" required><button type="button" class="eye" aria-label="Mostrar senha" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></span><span class="hint" data-for="rPass2"></span></label>
 <p class="form-err" id="formErr" role="alert" hidden></p>
-<button class="buy" id="regBtn" type="submit">Criar conta</button>
-<p class="auth-foot">Já tem uma conta? <a href="login.html" id="toLogin">Entrar</a></p>
+<button class="buy" id="regBtn" type="submit">Criar conta<svg class="ic"><use href="#i-arrow"/></svg></button>
+<p class="auth-foot">Já tem uma conta? <a data-go="login" href="login.html">Entrar</a></p>
 </form>
 <section class="panel auth-card verify" id="verifyBox" hidden aria-live="polite">
 <span class="ok"><svg class="ic"><use href="#i-mail"/></svg></span>
@@ -68,6 +79,7 @@
 <button class="linkbtn" id="vOut" type="button">Usar outro e-mail</button>
 </div>
 </section>
+<p class="auth-secure"><svg class="ic"><use href="#i-lock"/></svg>Conexão segura · seus dados ficam protegidos</p>
 </div>
 </div>
 </main>
