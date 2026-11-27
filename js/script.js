@@ -48,7 +48,7 @@
     var list = $('itemsList');
     list.innerHTML = '';
     cart.forEach(function (it, idx) {
-      var br = BRAND[it.id] || { c: '#2c5fd0', t: (it.name || '?').charAt(0) };
+      var br = BRAND[it.id] || { c: '#2f7fe0', t: (it.name || '?').charAt(0) };
       var parts = String(it.name).split(' – ');
       var li = document.createElement('li');
       li.className = 'item';
