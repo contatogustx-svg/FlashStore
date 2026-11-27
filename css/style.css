@@ -913,7 +913,6 @@ nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
 .resale{--c:#f59e0b;margin:0 0 56px}
 .resale-in{position:relative;overflow:hidden;isolation:isolate;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:42px 46px;border-radius:30px;border:1px solid color-mix(in srgb,var(--c) 34%,#1e2c52);background:radial-gradient(70% 120% at 0 0,color-mix(in srgb,var(--c) 26%,transparent),transparent 62%),radial-gradient(50% 90% at 100% 100%,#2a58c840,transparent 70%),linear-gradient(160deg,#111b42,#090f22);box-shadow:0 24px 60px #0009,inset 0 1px 0 #ffffff12}
 .resale-in::before{content:"";position:absolute;left:6%;right:6%;top:0;height:2px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,transparent,var(--c),transparent)}
-.resale-in::after{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(115deg,#ffffff08 0 1px,transparent 1px 16px);-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%)}
 .resale-wm{position:absolute;right:-40px;bottom:-70px;width:340px;height:340px;max-width:none;color:var(--c);opacity:.07;stroke-width:1;z-index:-1;pointer-events:none}
 .resale-main h2{margin:0 0 12px;max-width:15em;font-size:clamp(26px,3vw,38px);font-weight:800;line-height:1.12;letter-spacing:-.6px;color:#fff}
 .resale-main>p{margin:0;max-width:46ch;font-size:15px;line-height:1.55;color:#aebbe0}
