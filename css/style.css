@@ -951,3 +951,11 @@ nav a.on .ic{filter:drop-shadow(0 0 6px #ffffffaa)}
 .rt-row span{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rt-row em{padding:4px 9px;font-size:11px}
 }
+
+/* ===== Bordas brilhantes: cards de Recargas e Streamings ===== */
+#recargas .card{--glow:var(--b1,#3d8bff)}
+#streamings .card{--glow:var(--c,#3d8bff)}
+#recargas .card,#streamings .card{border-color:color-mix(in srgb,var(--glow) 70%,#1e2c52);box-shadow:0 0 0 1px color-mix(in srgb,var(--glow) 28%,transparent),0 0 22px color-mix(in srgb,var(--glow) 32%,transparent),0 12px 30px #0006}
+#recargas .card::after,#streamings .card::after{content:"";position:absolute;inset:0;z-index:3;padding:2px;border-radius:inherit;pointer-events:none;background:conic-gradient(from var(--a),#0000 0 52%,color-mix(in srgb,var(--glow) 75%,#fff) 74%,#fff 84%,color-mix(in srgb,var(--glow) 75%,#fff) 92%,#0000 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:spin 5s linear infinite}
+#recargas .card:hover,#streamings .card:hover{border-color:color-mix(in srgb,var(--glow) 90%,#fff);box-shadow:0 0 0 1px color-mix(in srgb,var(--glow) 45%,transparent),0 0 34px color-mix(in srgb,var(--glow) 50%,transparent),0 16px 38px #000a}
+@media(prefers-reduced-motion:reduce){#recargas .card::after,#streamings .card::after{animation:none}}
