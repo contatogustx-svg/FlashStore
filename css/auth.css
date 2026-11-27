@@ -7,7 +7,6 @@ radial-gradient(760px 560px at 100% 18%,#5b2bd14d,transparent 62%),
 radial-gradient(820px 520px at 45% 112%,#0f7ad04d,transparent 62%),
 linear-gradient(180deg,#070d24,#060a14)}
 .auth-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-.auth-bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#5b8fd91a 1px,transparent 1px),linear-gradient(90deg,#5b8fd91a 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000,transparent 80%);mask-image:radial-gradient(ellipse 70% 60% at 50% 35%,#000,transparent 80%)}
 .auth-bg i{position:absolute;border-radius:50%;filter:blur(100px);opacity:.5;animation:float 12s ease-in-out infinite}
 .auth-bg .a1{width:440px;height:440px;left:-120px;top:6%;background:#2a58c8}
 .auth-bg .a2{width:380px;height:380px;right:-80px;top:30%;background:#6a2cd8;animation-delay:-4s}
